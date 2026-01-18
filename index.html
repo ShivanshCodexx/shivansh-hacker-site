@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,83 +6,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#00ff9c;font-family:'Share Tech Mono',monospace;overflow-x:hidden}
+body{background:#000;color:#00ff9c;font-family:'Share Tech Mono',monospace;overflow-x:hidden}canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2} .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at top,#001b12,#000);opacity:.85;z-index:-1}
 
-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2}
-.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at top,#001b12,#000);opacity:.85;z-index:-1}
+header{text-align:center;padding:20px;position:relative;z-index:5;opacity:0;transform:translateY(-30px);transition:opacity 0.3s ease, transform 0.3s ease} header.show{opacity:1;transform:translateY(0)} header h1{font-size:24px;text-shadow:0 0 10px #00ff9c}
 
-header{text-align:center;padding:20px;position:relative;z-index:5;opacity:0;transform:translateY(-30px);transition:opacity 0.3s ease, transform 0.3s ease}
-header.show{opacity:1;transform:translateY(0)}
-header h1{font-size:24px;text-shadow:0 0 10px #00ff9c}
+section{padding:80px 20px;position:relative;z-index:5;opacity:0;transform:translateY(30px);transition:opacity 0.5s ease, transform 0.5s ease} section.show{opacity:1;transform:translateY(0)}
 
-section{padding:80px 20px;position:relative;z-index:5;opacity:0;transform:translateY(30px);transition:opacity 0.3s ease, transform 0.3s ease}
-section.show{opacity:1;transform:translateY(0)}
+.hero{text-align:center} .hero h2{font-size:40px;color:#eafff6;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease, transform 0.5s ease} .hero h2.show{opacity:1;transform:translateY(0);text-shadow:0 0 15px #00ff9c} .hero h2 span{color:#00ff9c} .hero h3{margin:12px 0;font-weight:400;color:#00cc88;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease 0.05s, transform 0.5s ease 0.05s;text-shadow:0 0 8px #00ff9c} .hero h3.show{opacity:1;transform:translateY(0)} .hero p{max-width:620px;margin:0 auto 30px;font-family:'Poppins',sans-serif;color:#c9fff0;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;text-shadow:0 0 6px #00ff9c} .hero p.show{opacity:1;transform:translateY(0)}
 
-.hero{text-align:center}
-.hero h2{font-size:40px;color:#eafff6;opacity:0;transform:translateY(20px);transition:opacity 0.3s ease, transform 0.3s ease}
-.hero h2.show{opacity:1;transform:translateY(0);text-shadow:0 0 15px #00ff9c}
-.hero h2 span{color:#00ff9c}
-.hero h3{margin:12px 0;font-weight:400;color:#00cc88;opacity:0;transform:translateY(20px);transition:opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;text-shadow:0 0 8px #00ff9c}
-.hero h3.show{opacity:1;transform:translateY(0)}
-.hero p{max-width:620px;margin:0 auto 30px;font-family:'Poppins',sans-serif;color:#c9fff0;opacity:0;transform:translateY(20px);transition:opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;text-shadow:0 0 6px #00ff9c}
-.hero p.show{opacity:1;transform:translateY(0)}
+.btns{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s} .btns.show{opacity:1;transform:translateY(0)} .btn{padding:12px 26px;border:1px solid #00ff9c;color:#00ff9c;text-decoration:none;border-radius:6px;transition:.3s;box-shadow:0 0 10px #00ff9c} .btn:hover{background:#00ff9c;color:#000;box-shadow:0 0 20px #00ff9c;transform:scale(1.1)}
 
-.btns{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;opacity:0;transform:translateY(20px);transition:opacity 0.3s ease 0.15s, transform 0.3s ease 0.15s}
-.btns.show{opacity:1;transform:translateY(0)}
-.btn{padding:12px 26px;border:1px solid #00ff9c;color:#00ff9c;text-decoration:none;border-radius:6px;transition:.3s;box-shadow:0 0 10px #00ff9c}
-.btn:hover{background:#00ff9c;color:#000;box-shadow:0 0 20px #00ff9c;transform:scale(1.1)}
+.profile{margin-top:40px;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s} .profile.show{opacity:1;transform:translateY(0);box-shadow:0 0 35px #00ff9c} .profile img{width:220px;height:220px;border-radius:50%;border:3px solid #00ff9c;object-fit:cover;box-shadow:0 0 25px rgba(0,255,156,.7)}
 
-.profile{margin-top:40px;opacity:0;transform:translateY(20px);transition:opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s}
-.profile.show{opacity:1;transform:translateY(0);box-shadow:0 0 35px #00ff9c}
-.profile img{width:220px;height:220px;border-radius:50%;border:3px solid #00ff9c;object-fit:cover;box-shadow:0 0 25px rgba(0,255,156,.7)}
+.box{text-align:center;max-width:800px;margin:0 auto;opacity:0;transform:translateY(30px);transition:opacity 0.5s ease, transform 0.5s ease} .box.show{opacity:1;transform:translateY(0)} .box h2{margin-bottom:15px;text-shadow:0 0 10px #00ff9c}
 
-.box{text-align:center;max-width:800px;margin:0 auto;opacity:0;transform:translateY(30px);transition:opacity 0.3s ease, transform 0.3s ease}
-.box.show{opacity:1;transform:translateY(0)}
-.box h2{margin-bottom:15px;text-shadow:0 0 10px #00ff9c}
+footer{text-align:center;padding:18px;font-size:13px;opacity:.6;z-index:5;position:relative;text-shadow:0 0 5px #00ff9c} </style>
 
-footer{text-align:center;padding:18px;font-size:13px;opacity:.6;z-index:5;position:relative;text-shadow:0 0 5px #00ff9c}
-</style>
 </head>
-<body>
+<body><canvas id="matrix"></canvas> <canvas id="particles"></canvas>
 
-<canvas id="matrix"></canvas>
-<canvas id="particles"></canvas>
-<div class="overlay"></div>
-
-<header>
+<div class="overlay"></div><header>
   <h1>&lt;/&gt; Shivansh_Codex</h1>
-</header>
-
-<section class="hero" id="home">
+</header><section class="hero" id="home">
   <h2>HI, I'M <span>SHIVANSH</span></h2>
   <h3>Student • Developer • Ethical Hacker</h3>
-  <p>Welcome to my cyber space. Tools and creative digital projects with an ethical hacker mindset.</p>
-
-  <div class="btns">
+  <p>Welcome to my cyber space. Tools and creative digital projects with an ethical hacker mindset.</p>  <div class="btns">
     <a href="https://www.instagram.com/shivansh_up_70" target="_blank" class="btn">Instagram</a>
     <a href="https://t.me/Shivansh_Codex" target="_blank" class="btn">Telegram</a>
-  </div>
-
-  <div class="profile">
+  </div>  <div class="profile">
     <img src="profile.png" alt="Profile" />
   </div>
-</section>
-
-<section class="box" id="about">
+</section><section class="box" id="about">
   <h2>About Me</h2>
   <p>I am learning ethical hacking and web development. I enjoy creating hacker-style UIs, cyber themed websites and digital tools.</p>
-</section>
-
-<section class="box" id="skills">
+</section><section class="box" id="skills">
   <h2>Skills</h2>
   <p>HTML • CSS • JavaScript • Cyber UI Design • Ethical Hacking Basics • Creative Coding</p>
-</section>
-
-<footer>
+</section><footer>
   © 2021 Shivansh Codex | Ethical Hacker
-</footer>
-
-<script>
+</footer><script>
 // MATRIX EFFECT
 const mCanvas=document.getElementById('matrix');
 const mCtx=mCanvas.getContext('2d');
@@ -105,7 +66,7 @@ function drawMatrix(){
     drops[i]++;
   }
 }
-setInterval(drawMatrix,25); // faster effect
+setInterval(drawMatrix,25);
 
 // PARTICLES EFFECT
 const pCanvas=document.getElementById('particles');
@@ -128,8 +89,6 @@ drawParticles();
 
 // PAGE LOAD ANIMATION
 window.addEventListener('load',()=>{
-  document.getElementById('matrix').classList.add('canvas-active');
-  document.getElementById('particles').classList.add('canvas-active');
   document.querySelector('header').classList.add('show');
   document.querySelector('#home h2').classList.add('show');
   document.querySelector('#home h3').classList.add('show');
@@ -139,7 +98,5 @@ window.addEventListener('load',()=>{
   document.querySelector('#about').classList.add('show');
   document.querySelector('#skills').classList.add('show');
 });
-</script>
-
-</body>
+</script></body>
 </html>
