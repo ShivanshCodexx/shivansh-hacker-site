@@ -1,97 +1,42 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Courier New', monospace;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shivansh Sharma | Cybersecurity</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
 
-body {
-  background: black;
-  color: #00ff99;
-  overflow: hidden;
-}
+<body>
 
-/* TERMINAL */
-#terminal {
-  position: fixed;
-  inset: 0;
-  background: black;
-  padding: 30px;
-  font-size: 16px;
-}
+<!-- CYBER BACKGROUND -->
+<div class="cyber-bg"></div>
 
-/* LOADER */
-#loader {
-  position: fixed;
-  inset: 0;
-  background: black;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+<!-- MAIN CARD -->
+<div class="card">
+  <img src="profile.png" class="profile">
 
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid #003;
-  border-top: 4px solid #00ff99;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
+  <h1>Shivansh Sharma</h1>
+  <h2>Cybersecurity Student</h2>
 
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
+  <div class="skills">
+    <span>Linux</span>
+    <span>Networking</span>
+    <span>Web Security</span>
+    <span>Python</span>
+    <span>JavaScript</span>
+  </div>
 
-/* MATRIX */
-#matrix {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-}
+  <div class="buttons">
+    <a href="https://www.instagram.com/shivansh_up_70" target="_blank">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+    <a href="https://t.me/Shivansh_Codex" target="_blank">
+      <i class="fab fa-telegram"></i> Telegram
+    </a>
+  </div>
+</div>
 
-/* CARD */
-.card {
-  display: none;
-  width: 320px;
-  background: rgba(0,0,0,0.85);
-  border-radius: 20px;
-  padding: 30px;
-  margin: auto;
-  margin-top: 10vh;
-  text-align: center;
-  box-shadow: 0 0 30px #00ff99;
-}
-
-.profile img {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 3px solid #00ff99;
-}
-
-h1 span {
-  color: #00ff99;
-}
-
-.typing {
-  margin: 10px 0;
-  height: 24px;
-}
-
-.buttons a {
-  display: inline-block;
-  margin: 8px;
-  padding: 10px 20px;
-  border: 1px solid #00ff99;
-  color: #00ff99;
-  text-decoration: none;
-  border-radius: 25px;
-  transition: 0.3s;
-}
-
-.buttons a:hover {
-  background: #00ff99;
-  color: black;
-}
+</body>
+</html>
