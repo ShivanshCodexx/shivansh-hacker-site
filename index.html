@@ -1,42 +1,27 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shivansh Codex</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{background:#000;color:#00ff9c;font-family:'Share Tech Mono',monospace;overflow-y:auto}
-    canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;opacity:0;transition:opacity 1s ease}
-    .canvas-active{opacity:1}
-    .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at top,#001b12,#000);opacity:.9;z-index:-1}header{display:flex;justify-content:space-between;align-items:center;padding:18px;position:relative;z-index:10;opacity:0;transform:translateY(-30px);transition:opacity 1s ease, transform 1s ease}
-header.show{opacity:1;transform:translateY(0)}
-header h1{color:#00ff9c;font-size:20px}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shivansh Codex</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#00ff9c;font-family:'Share Tech Mono',monospace;overflow-y:auto}
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;opacity:0;transition:opacity 1s ease}.canvas-active{opacity:1}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at top,#001b12,#000);opacity:.9;z-index:-1}header{display:flex;justify-content:center;align-items:center;padding:18px;position:relative;z-index:10;opacity:0;transform:translateY(-30px);transition:opacity 1s ease, transform 1s ease} header.show{opacity:1;transform:translateY(0)} header h1{color:#00ff9c;font-size:20px;text-align:center}
 
-section{padding:60px 20px;min-height:auto;opacity:0;transform:translateY(30px);transition:opacity 1s ease, transform 1s ease}
-section.show{opacity:1;transform:translateY(0)}
+section{padding:60px 20px;min-height:auto;opacity:0;transform:translateY(30px);transition:opacity 1s ease, transform 1s ease;z-index:5} section.show{opacity:1;transform:translateY(0)}
 
-.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:10}
-.hero h2{font-size:36px;color:#eafff6;opacity:0;transform:translateY(20px);transition:opacity 1s ease, transform 1s ease}
-.hero h2.show{opacity:1;transform:translateY(0)}
-.hero h2 span{color:#00ff9c}
-.hero h3{margin:14px 0;font-weight:400;color:#00cc88;opacity:0;transform:translateY(20px);transition:opacity 1s ease 0.3s, transform 1s ease 0.3s}
-.hero h3.show{opacity:1;transform:translateY(0)}
-.hero p{max-width:620px;opacity:0;margin-bottom:28px;font-family:'Poppins',sans-serif;color:#c9fff0;transition:opacity 1s ease 0.6s, transform 1s ease 0.6s;transform:translateY(20px)}
-.hero p.show{opacity:1;transform:translateY(0)}
+.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:10} .hero h2{font-size:36px;color:#eafff6} .hero h2 span{color:#00ff9c} .hero h3{margin:14px 0;font-weight:400;color:#00cc88} .hero p{max-width:620px;margin-bottom:28px;font-family:'Poppins',sans-serif;color:#c9fff0}
 
-.btns{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;opacity:0;transform:translateY(20px);transition:opacity 1s ease 0.9s, transform 1s ease 0.9s}
-.btns.show{opacity:1;transform:translateY(0)}
-.btn{padding:12px 26px;border-radius:6px;border:1px solid #00ff9c;color:#00ff9c;text-decoration:none;text-transform:uppercase;font-size:14px;letter-spacing:1px;transition:all 0.3s ease}
-.btn:hover{background:#00ff9c;color:#000;transform:scale(1.05)}
+.btns{display:flex;gap:15px;flex-wrap:wrap;justify-content:center} .btn{padding:12px 26px;border-radius:6px;border:1px solid #00ff9c;color:#00ff9c;text-decoration:none;text-transform:uppercase;font-size:14px;letter-spacing:1px;transition:all 0.3s ease} .btn:hover{background:#00ff9c;color:#000;transform:scale(1.05)}
 
-.profile{margin-top:40px;opacity:0;transform:translateY(20px);transition:opacity 1s ease 1.2s, transform 1s ease 1.2s}
-.profile.show{opacity:1;transform:translateY(0)}
-.profile img{width:220px;height:220px;border-radius:50%;border:3px solid #00ff9c;object-fit:cover;box-shadow:0 0 25px rgba(0,255,156,.6)}
+.profile{margin-top:40px} .profile img{width:220px;height:220px;border-radius:50%;border:3px solid #00ff9c;object-fit:cover;box-shadow:0 0 25px rgba(0,255,156,.6)}
 
-footer{text-align:center;padding:18px;opacity:.6;position:relative;z-index:10;font-size:13px}
+.about-box, .skills-box{max-width:800px;margin:0 auto;text-align:center;padding:40px 20px;border:1px solid #00ff9c;border-radius:8px;box-shadow:0 0 20px rgba(0,255,156,0.3);margin-bottom:40px} .about-box h2, .skills-box h2{text-shadow:0 0 10px #00ff9c;margin-bottom:15px} .about-box p, .skills-box p{line-height:1.6;opacity:0.9}
 
-  </style>
+footer{text-align:center;padding:18px;opacity:.6;position:relative;z-index:10;font-size:13px} </style>
+
 </head>
 <body><canvas id="matrix"></canvas> <canvas id="particles"></canvas>
 
@@ -54,11 +39,11 @@ footer{text-align:center;padding:18px;opacity:.6;position:relative;z-index:10;fo
   <div class="profile">
     <img src="profile.png" alt="Shivansh Profile" />
   </div>
-</section><section id="about" class="hero">
-  <h2><span>About Me</span></h2>
-  <p>I am an Ethical Hacker and web developer with a passion for cyber security and creative digital projects. I specialize in building hacker-style user interfaces, secure tools, and innovative web applications. My work focuses on blending aesthetics with functionality while maintaining a strong ethical approach.</p>
-</section><section id="skills" class="hero">
-  <h2><span>Skills</span></h2>
+</section><section id="about" class="about-box">
+  <h2>About Me</h2>
+  <p>I am an Ethical Hacker and web developer with a passion for cybersecurity and creative digital projects. I specialize in hacker-style UIs, secure tools, and innovative web applications. My work blends aesthetics with functionality while maintaining an ethical approach.</p>
+</section><section id="skills" class="skills-box">
+  <h2>Skills</h2>
   <p>• HTML, CSS, JavaScript<br>• Cyber UI Design & Animation<br>• Ethical Hacking Basics<br>• Web Security & Automation<br>• Creative Coding & Tool Development<br>• Problem Solving & Digital Innovation</p>
 </section><footer>
   © 2021 Shivansh Codex | Ethical Hacker
@@ -82,7 +67,7 @@ const pCanvas=document.getElementById('particles');const pCtx=pCanvas.getContext
 function resizeParticles(){pCanvas.width=innerWidth;pCanvas.height=innerHeight}
 resizeParticles();addEventListener('resize',resizeParticles);
 let particles=[];for(let i=0;i<80;i++){particles.push({x:Math.random()*pCanvas.width,y:Math.random()*pCanvas.height,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5})}
-function drawParticles(){pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);for(let i=0;i<particles.length;i++){let p=particles[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>pCanvas.width)p.vx*=-1;if(p.y<0||p.y>pCanvas.height)p.vy*=-1;pCtx.fillStyle='#00ff9c';pCtx.fillRect(p.x,p.y,2,2);for(let j=i;j<particles.length;j++){let q=particles[j];let dx=p.x-q.x,dy=p.y-q.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){pCtx.strokeStyle='rgba(0,255,156,0.12)';pCtx.beginPath();pCtx.moveTo(p.x,p.y);pCtx.lineTo(q.x,q.y);pCtx.stroke()}}}requestAnimationFrame(drawParticles)}
+function drawParticles(){pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);for(let i=0;i<particles.length;i++){let p=particles[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>pCanvas.width)p.vx*=-1;if(p.y<0||p.y>pCanvas.height)p.vy*=-1;pCtx.fillStyle='#00ff9c';pCtx.fillRect(p.x,p.y,2,2);for(let j=i;j<particles.length;j++){let q=particles[j];let dx=p.x-q.x,dy=p.y-q.y;let dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){pCtx.strokeStyle='rgba(0,255,156,0.12)';pCtx.beginPath();pCtx.moveTo(p.x,p.y);pCtx.lineTo(q.x,q.y);pCtx.stroke()}}}requestAnimationFrame(drawParticles)}
 drawParticles();
 
 // PAGE LOAD & SCROLL ANIMATION
@@ -107,4 +92,5 @@ window.addEventListener('scroll',()=>{
   });
 });
 </script></body>
+</html></script></body>
 </html>
