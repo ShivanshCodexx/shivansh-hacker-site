@@ -6,16 +6,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{background:#000;color:#00ff9c;font-family:'Share Tech Mono',monospace;overflow:auto}canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2}
+    body{background:#000;color:#00ff9c;font-family:'Share Tech Mono',monospace;overflow-y:auto}canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2}
 .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at top,#001b12,#000);opacity:.9;z-index:-1}
 
 header{display:flex;justify-content:space-between;align-items:center;padding:18px;position:relative;z-index:10}
 header h1{color:#00ff9c;font-size:20px}
-nav{font-size:26px;cursor:pointer;color:#00ff9c;position:relative}
 
-.menu{transition:transform .3s ease} .menu.active{transform:rotate(90deg)} .menu .dropdown{display:none;position:absolute;right:0;top:35px;background:#000;border:1px solid #00ff9c;border-radius:6px;overflow:hidden} .menu.open .dropdown{display:block;animation:fade .3s ease} @keyframes fade{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}} .menu .dropdown a{display:block;padding:10px 14px;color:#00ff9c;text-decoration:none;border-bottom:1px solid rgba(0,255,156,.2)} .menu .dropdown a:last-child{border-bottom:none} .menu .dropdown a:hover{background:#00ff9c;color:#000}
+nav.menu{font-size:26px;cursor:pointer;color:#00ff9c;position:relative}
+.menu .dropdown{display:none;position:absolute;right:0;top:35px;background:#000;border:1px solid #00ff9c;border-radius:6px;overflow:hidden;min-width:160px}
+.menu.open .dropdown{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.menu .dropdown a{display:block;padding:10px 14px;color:#00ff9c;text-decoration:none;border-bottom:1px solid rgba(0,255,156,.2)}
+.menu .dropdown a:last-child{border-bottom:none}
+.menu .dropdown a:hover{background:#00ff9c;color:#000}
 
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;position:relative;z-index:10}
+section{padding:60px 20px;min-height:auto}
+
+.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:10}
 .hero h2{font-size:36px;color:#eafff6}
 .hero h2 span{color:#00ff9c}
 .hero h3{margin:14px 0;font-weight:400;color:#00cc88}
@@ -55,14 +62,14 @@ footer{text-align:center;padding:18px;opacity:.6;position:relative;z-index:10;fo
   </div>  <div class="profile">
     <img src="profile.png" alt="Shivansh Profile" />
   </div>
-</section><section id="about" class="hero" style="min-height:80vh">
+</section><section id="about" class="hero">
   <h2><span>About Me</span></h2>
   <p>I am an Ethical Hacker mindset learner and developer. I love building hacker-style UIs, secure tools and creative digital projects with a cyber theme.</p>
-</section><section id="skills" class="hero" style="min-height:80vh">
+</section><section id="skills" class="hero">
   <h2><span>Skills</span></h2>
   <p>HTML • CSS • JavaScript • Cyber UI Design • Ethical Hacking Basics • Automation • Creative Coding</p>
 </section><footer>
-  © 2026 Shivansh Codex | Hacker Theme Portfolio
+  © 2021 Shivansh Codex | Ethical hacker
 </footer><script>
 // MATRIX EFFECT
 const mCanvas=document.getElementById('matrix');
@@ -79,21 +86,21 @@ setInterval(drawMatrix,33);
 const pCanvas=document.getElementById('particles');const pCtx=pCanvas.getContext('2d');
 function resizeParticles(){pCanvas.width=innerWidth;pCanvas.height=innerHeight}
 resizeParticles();addEventListener('resize',resizeParticles);
-let particles=[];for(let i=0;i<90;i++){particles.push({x:Math.random()*pCanvas.width,y:Math.random()*pCanvas.height,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6})}
+let particles=[];for(let i=0;i<80;i++){particles.push({x:Math.random()*pCanvas.width,y:Math.random()*pCanvas.height,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5})}
 function drawParticles(){pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);for(let i=0;i<particles.length;i++){let p=particles[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>pCanvas.width)p.vx*=-1;if(p.y<0||p.y>pCanvas.height)p.vy*=-1;pCtx.fillStyle='#00ff9c';pCtx.fillRect(p.x,p.y,2,2);for(let j=i;j<particles.length;j++){let q=particles[j];let dx=p.x-q.x,dy=p.y-q.y;let dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){pCtx.strokeStyle='rgba(0,255,156,0.12)';pCtx.beginPath();pCtx.moveTo(p.x,p.y);pCtx.lineTo(q.x,q.y);pCtx.stroke()}}}requestAnimationFrame(drawParticles)}
 drawParticles();
-// MENU CLICK ANIMATION
+
+// MENU
 const menu=document.querySelector('.menu');
-menu.addEventListener('click',()=>{menu.classList.toggle('open');menu.classList.toggle('active');});
+menu.addEventListener('click',()=>{menu.classList.toggle('open')});
 
 // SMOOTH SCROLL
 document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
   anchor.addEventListener('click',function(e){
     e.preventDefault();
     document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
-    menu.classList.remove('open','active');
+    menu.classList.remove('open');
   });
 });
-
 </script></body>
 </html>
