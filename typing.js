@@ -1,25 +1,13 @@
-const roles = ["STUDENT", "ETHICAL HACKER", "WEB DEVELOPER"];
+const text = "Access Granted... Welcome Hacker.";
 let index = 0;
-let char = 0;
-const typing = document.querySelector(".typing");
+const typingElement = document.getElementById("typing");
 
-function type() {
-  if (char < roles[index].length) {
-    typing.textContent += roles[index][char++];
-    setTimeout(type, 100);
-  } else {
-    setTimeout(erase, 1500);
+function typeEffect() {
+  if (index < text.length) {
+    typingElement.innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeEffect, 80);
   }
 }
 
-function erase() {
-  if (char > 0) {
-    typing.textContent = roles[index].substring(0, --char);
-    setTimeout(erase, 60);
-  } else {
-    index = (index + 1) % roles.length;
-    setTimeout(type, 400);
-  }
-}
-
-type();
+window.startTyping = typeEffect;
