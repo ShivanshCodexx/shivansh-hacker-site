@@ -1,43 +1,78 @@
-/* ===== LIVE CYBER BACKGROUND EFFECT ===== */
-
-/* moving scan lines */
-.cyber-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(79,195,247,0.05) 1px,
-    transparent 1px
-  );
-  background-size: 100% 4px;
-  animation: scanMove 6s linear infinite;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@keyframes scanMove {
-  from { background-position: 0 0; }
-  to { background-position: 0 100px; }
+body {
+  background: black;
+  color: #00ff9c;
+  font-family: "Courier New", monospace;
+  overflow: hidden;
 }
 
-/* soft noise grain */
-.cyber-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/ %3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-  pointer-events: none;
-}
-
-/* subtle pulse glow */
-body::after {
-  content: "";
+/* Loader */
+#loader {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(79,195,247,0.08), transparent 60%);
-  animation: pulse 6s ease-in-out infinite;
-  pointer-events: none;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
-@keyframes pulse {
-  0%,100% { opacity: 0.4; }
-  50% { opacity: 0.7; }
+.loader-text {
+  font-size: 20px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Matrix */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* Terminal */
+.terminal {
+  text-align: center;
+  margin-top: 15vh;
+}
+
+.hidden {
+  display: none;
+}
+
+.profile {
+  width: 120px;
+  border-radius: 50%;
+  border: 2px solid #00ff9c;
+  margin-bottom: 15px;
+}
+
+/* Glitch Effect */
+.glitch {
+  font-size: 32px;
+  position: relative;
+  animation: glitch 1.5s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 0 red; }
+  50% { text-shadow: -2px 0 blue; }
+  100% { text-shadow: 2px 0 red; }
+}
+
+/* Links */
+.links a {
+  display: block;
+  margin: 10px;
+  color: #00ff9c;
+  text-decoration: none;
 }
