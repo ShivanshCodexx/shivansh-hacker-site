@@ -1,13 +1,15 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shivansh Codex | Ethical Hacker</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{background:#000;color:#00ff9c;font-family:'Share Tech Mono',monospace;overflow-x:hidden}canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;opacity:0;transition:opacity 0.5s ease}
-.canvas-active{opacity:1}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shivansh Codex | Ethical Hacker</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#00ff9c;font-family:'Share Tech Mono',monospace;overflow-x:hidden}
+
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2}
 .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at top,#001b12,#000);opacity:.85;z-index:-1}
 
 header{text-align:center;padding:20px;position:relative;z-index:5;opacity:0;transform:translateY(-30px);transition:opacity 0.3s ease, transform 0.3s ease}
@@ -40,37 +42,55 @@ section.show{opacity:1;transform:translateY(0)}
 .box h2{margin-bottom:15px;text-shadow:0 0 10px #00ff9c}
 
 footer{text-align:center;padding:18px;font-size:13px;opacity:.6;z-index:5;position:relative;text-shadow:0 0 5px #00ff9c}
-
-  </style>
+</style>
 </head>
-<body><canvas id="matrix"></canvas> <canvas id="particles"></canvas>
+<body>
 
-<div class="overlay"></div><header>
+<canvas id="matrix"></canvas>
+<canvas id="particles"></canvas>
+<div class="overlay"></div>
+
+<header>
   <h1>&lt;/&gt; Shivansh_Codex</h1>
-</header><section class="hero" id="home">
+</header>
+
+<section class="hero" id="home">
   <h2>HI, I'M <span>SHIVANSH</span></h2>
   <h3>Student • Developer • Ethical Hacker</h3>
-  <p>Welcome to my cyber space. Tools and creative digital projects with an ethical hacker mindset.</p>  <div class="btns">
+  <p>Welcome to my cyber space. Tools and creative digital projects with an ethical hacker mindset.</p>
+
+  <div class="btns">
     <a href="https://www.instagram.com/shivansh_up_70" target="_blank" class="btn">Instagram</a>
     <a href="https://t.me/Shivansh_Codex" target="_blank" class="btn">Telegram</a>
-  </div>  <div class="profile">
+  </div>
+
+  <div class="profile">
     <img src="profile.png" alt="Profile" />
   </div>
-</section><section class="box" id="about">
+</section>
+
+<section class="box" id="about">
   <h2>About Me</h2>
   <p>I am learning ethical hacking and web development. I enjoy creating hacker-style UIs, cyber themed websites and digital tools.</p>
-</section><section class="box" id="skills">
+</section>
+
+<section class="box" id="skills">
   <h2>Skills</h2>
   <p>HTML • CSS • JavaScript • Cyber UI Design • Ethical Hacking Basics • Creative Coding</p>
-</section><footer>
+</section>
+
+<footer>
   © 2021 Shivansh Codex | Ethical Hacker
-</footer><script>
+</footer>
+
+<script>
 // MATRIX EFFECT
 const mCanvas=document.getElementById('matrix');
 const mCtx=mCanvas.getContext('2d');
 function resizeMatrix(){mCanvas.width=innerWidth;mCanvas.height=innerHeight}
 resizeMatrix();window.addEventListener('resize',resizeMatrix);
-const letters='01ABCDEFGHIJKLMNOPQRSTUVWXYZ';const fontSize=16;
+const letters='01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const fontSize=16;
 let columns=Math.floor(innerWidth/fontSize);
 let drops=Array(columns).fill(1);
 function drawMatrix(){
@@ -81,7 +101,7 @@ function drawMatrix(){
   for(let i=0;i<drops.length;i++){
     const text=letters[Math.floor(Math.random()*letters.length)];
     mCtx.fillText(text,i*fontSize,drops[i]*fontSize);
-    if(drops[i]*fontSize>mCanvas.height&&Math.random()>0.975)drops[i]=0;
+    if(drops[i]*fontSize>mCanvas.height && Math.random()>0.975) drops[i]=0;
     drops[i]++;
   }
 }
@@ -93,7 +113,7 @@ const pCtx=pCanvas.getContext('2d');
 function resizeParticles(){pCanvas.width=innerWidth;pCanvas.height=innerHeight}
 resizeParticles();window.addEventListener('resize',resizeParticles);
 let particles=[];
-for(let i=0;i<80;i++)particles.push({x:Math.random()*pCanvas.width,y:Math.random()*pCanvas.height,vx:(Math.random()-.5)*0.8,vy:(Math.random()-.5)*0.8});
+for(let i=0;i<80;i++) particles.push({x:Math.random()*pCanvas.width,y:Math.random()*pCanvas.height,vx:(Math.random()-.5)*0.8,vy:(Math.random()-.5)*0.8});
 function drawParticles(){
   pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
   for(let i=0;i<particles.length;i++){
@@ -119,5 +139,7 @@ window.addEventListener('load',()=>{
   document.querySelector('#about').classList.add('show');
   document.querySelector('#skills').classList.add('show');
 });
-</script></body>
+</script>
+
+</body>
 </html>
