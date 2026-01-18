@@ -4,16 +4,16 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const letters = "01";
 const fontSize = 14;
 const columns = canvas.width / fontSize;
-const drops = Array.from({ length: columns }).fill(1);
+const drops = Array(Math.floor(columns)).fill(1);
 
-function draw() {
+function drawMatrix() {
   ctx.fillStyle = "rgba(0,0,0,0.05)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle = "#00ff99";
+  ctx.fillStyle = "#00ff9c";
   ctx.font = fontSize + "px monospace";
 
   drops.forEach((y, i) => {
@@ -27,4 +27,4 @@ function draw() {
   });
 }
 
-setInterval(draw, 33);
+setInterval(drawMatrix, 33);
