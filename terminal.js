@@ -1,28 +1,18 @@
-const terminalText = document.getElementById("terminal-text");
-const terminal = document.getElementById("terminal");
-
-const lines = [
-  "Initializing system...",
-  "Connecting to server...",
+const text = [
+  "Accessing secure server...",
   "Bypassing firewall...",
-  "Accessing data stream...",
-  "Verifying identity...",
-  "ACCESS GRANTED ✔"
+  "Decrypting data packets...",
+  "Access Granted ✔"
 ];
 
-let line = 0;
+let i = 0;
+const terminalText = document.getElementById("terminal-text");
 
 function typeLine() {
-  if (line < lines.length) {
-    terminalText.innerHTML += lines[line] + "\n";
-    line++;
+  if (i < text.length) {
+    terminalText.innerHTML += text[i] + "\n";
+    i++;
     setTimeout(typeLine, 700);
-  } else {
-    setTimeout(() => {
-      terminal.style.display = "none";
-      document.getElementById("loader").style.display = "flex";
-    }, 1000);
   }
 }
-
 typeLine();
