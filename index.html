@@ -6,11 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-<!-- TERMINAL INTRO -->
+<!-- TERMINAL -->
 <div id="terminal">
   <pre id="terminal-text"></pre>
 </div>
@@ -24,10 +25,10 @@
 <!-- MATRIX BACKGROUND -->
 <canvas id="matrix"></canvas>
 
-<!-- MAIN SITE -->
-<div class="card" id="main" style="display:none;">
+<!-- MAIN CARD -->
+<div class="card" id="main">
   <div class="profile">
-    <img src="profile.png" alt="Shivansh Sharma">
+    <img src="profile.png" alt="Profile">
   </div>
 
   <h1>SHIVANSH <span>SHARMA</span></h1>
@@ -45,26 +46,9 @@
   </div>
 </div>
 
-<!-- SCRIPTS -->
 <script src="terminal.js"></script>
 <script src="loader.js"></script>
 <script src="matrix.js"></script>
 <script src="typing.js"></script>
-
-<!-- FORCE SHOW MAIN (ANTI-LOADER-STUCK FIX) -->
-<script>
-  window.onload = () => {
-    setTimeout(() => {
-      const terminal = document.getElementById("terminal");
-      const loader = document.getElementById("loader");
-      const main = document.getElementById("main");
-
-      if (terminal) terminal.style.display = "none";
-      if (loader) loader.style.display = "none";
-      if (main) main.style.display = "block";
-    }, 3000);
-  };
-</script>
-
 </body>
 </html>
