@@ -1,26 +1,25 @@
-const texts = [
-  "HACKER THEME PORTFOLIO",
-  "STUDENT • DEVELOPER",
-  "CYBER STYLE PROFILE"
-];
-
-let count = 0;
+const roles = ["STUDENT", "ETHICAL HACKER", "WEB DEVELOPER"];
 let index = 0;
-let currentText = "";
-let letter = "";
+let char = 0;
+const typing = document.querySelector(".typing");
 
-(function type() {
-  if (count === texts.length) count = 0;
-  currentText = texts[count];
-  letter = currentText.slice(0, ++index);
-
-  document.querySelector(".typing").textContent = letter;
-
-  if (letter.length === currentText.length) {
-    count++;
-    index = 0;
-    setTimeout(type, 1200);
+function type() {
+  if (char < roles[index].length) {
+    typing.textContent += roles[index][char++];
+    setTimeout(type, 100);
   } else {
-    setTimeout(type, 80);
+    setTimeout(erase, 1500);
   }
-})();
+}
+
+function erase() {
+  if (char > 0) {
+    typing.textContent = roles[index].substring(0, --char);
+    setTimeout(erase, 60);
+  } else {
+    index = (index + 1) % roles.length;
+    setTimeout(type, 400);
+  }
+}
+
+type();
