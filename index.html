@@ -1,37 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Shivansh Sharma | Hacker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shivansh Codes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{background:#000;color:#fff;overflow:hidden}canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2}
 
-  <link rel="stylesheet" href="style.css">
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at top,#1a1f3c,#000);opacity:.85;z-index:-1}
+
+header{display:flex;justify-content:space-between;align-items:center;padding:20px;z-index:10;position:relative}
+header h1{color:#7f5cff}
+nav{font-size:26px;cursor:pointer}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;position:relative;z-index:10}
+.hero h2{font-size:38px}
+.hero h2 span{color:#7f5cff}
+.hero h3{margin:15px 0;font-weight:500;color:#b18bff}
+.hero p{max-width:600px;opacity:.9;margin-bottom:25px}
+
+.btns{display:flex;gap:15px;flex-wrap:wrap;justify-content:center}
+.btn{padding:12px 28px;border-radius:30px;border:2px solid #7f5cff;color:#fff;text-decoration:none}
+.btn.fill{background:linear-gradient(45deg,#7f5cff,#b18bff);border:none}
+
+.social{display:flex;gap:18px;margin-top:30px}
+.social a{width:45px;height:45px;border:2px solid #7f5cff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-size:14px}
+
+.profile{margin-top:40px}
+.profile img{width:220px;height:220px;border-radius:50%;border:4px solid #7f5cff;object-fit:cover}
+
+footer{text-align:center;padding:20px;opacity:.6;position:relative;z-index:10}
+
+  </style>
 </head>
-<body>
+<body><canvas id="matrix"></canvas> <canvas id="particles"></canvas>
 
-  <!-- Loader -->
-  <div id="loader">
-    <div class="loader-text">Initializing System...</div>
+<div class="overlay"></div><header>
+  <h1>&lt;/&gt; Shivansh Codes</h1>
+  <nav>☰</nav>
+</header><section class="hero">
+  <h2>HI, I'M <span>SHIVANSH</span></h2>
+  <h3>Student • Web Developer • Creator</h3>
+  <p>Hello! Welcome to my profile. I am a student and web developer. I create modern websites, tools and creative projects. Thanks for visiting! ❤️</p>  <div class="btns">
+    <a href="#" class="btn fill">Hire Me</a>
+    <a href="#" class="btn">Let's Talk</a>
+  </div>  <div class="social">
+    <a href="#">IG</a>
+    <a href="#">YT</a>
+    <a href="#">TG</a>
+    <a href="#">GH</a>
+  </div>  <div class="profile">
+    <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12" alt="profile" />
   </div>
+</section><footer>
+  © 2026 Shivansh Sharma | All Rights Reserved
+</footer><script>
+// MATRIX EFFECT
+const mCanvas = document.getElementById('matrix');
+const mCtx = mCanvas.getContext('2d');
 
-  <!-- Matrix Background -->
-  <canvas id="matrix"></canvas>
+function resizeMatrix(){
+  mCanvas.width = window.innerWidth;
+  mCanvas.height = window.innerHeight;
+}
+resizeMatrix();
+window.addEventListener('resize', resizeMatrix);
 
-  <!-- Main Content -->
-  <div class="terminal hidden">
-    <img src="profile.png" class="profile">
-    <h1 class="glitch">Shivansh Sharma</h1>
-    <p id="typing"></p>
+const letters = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const fontSize = 16;
+let columns = mCanvas.width / fontSize;
+let drops = Array.from({length: columns}).fill(1);
 
-    <div class="links">
-      <a href="https://www.instagram.com/shivansh_up_70" target="_blank">Instagram</a>
-      <a href="https://t.me/Shivansh_Codex" target="_blank">Telegram</a>
-    </div>
-  </div>
+function drawMatrix(){
+  mCtx.fillStyle = 'rgba(0,0,0,0.05)';
+  mCtx.fillRect(0,0,mCanvas.width,mCanvas.height);
+  mCtx.fillStyle = '#00ff9c';
+  mCtx.font = fontSize + 'px monospace';
 
-  <script src="matrix.js"></script>
-  <script src="loader.js"></script>
-  <script src="typing.js"></script>
-  <script src="terminal.js"></script>
-</body>
+  for(let i=0;i<drops.length;i++){
+    const text = letters[Math.floor(Math.random()*letters.length)];
+    mCtx.fillText(text, i*fontSize, drops[i]*fontSize);
+    if(drops[i]*fontSize > mCanvas.height && Math.random()>0.975){
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+}
+setInterval(drawMatrix, 33);
+
+// PARTICLES EFFECT
+const pCanvas = document.getElementById('particles');
+const pCtx = pCanvas.getContext('2d');
+
+function resizeParticles(){
+  pCanvas.width = window.innerWidth;
+  pCanvas.height = window.innerHeight;
+}
+resizeParticles();
+window.addEventListener('resize', resizeParticles);
+
+let particles = [];
+for(let i=0;i<80;i++){
+  particles.push({
+    x:Math.random()*pCanvas.width,
+    y:Math.random()*pCanvas.height,
+    vx:(Math.random()-0.5)*0.7,
+    vy:(Math.random()-0.5)*0.7
+  });
+}
+
+function drawParticles(){
+  pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
+  for(let i=0;i<particles.length;i++){
+    let p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    if(p.x<0||p.x>pCanvas.width) p.vx*=-1;
+    if(p.y<0||p.y>pCanvas.height) p.vy*=-1;
+
+    pCtx.fillStyle='#7f5cff';
+    pCtx.fillRect(p.x,p.y,2,2);
+
+    for(let j=i;j<particles.length;j++){
+      let q = particles[j];
+      let dx = p.x-q.x;
+      let dy = p.y-q.y;
+      let dist = Math.sqrt(dx*dx+dy*dy);
+      if(dist<120){
+        pCtx.strokeStyle='rgba(127,92,255,0.15)';
+        pCtx.beginPath();
+        pCtx.moveTo(p.x,p.y);
+        pCtx.lineTo(q.x,q.y);
+        pCtx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+</script></body>
 </html>
