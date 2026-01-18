@@ -2,40 +2,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shivansh Codex</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>Shivansh Codex | Ethical Hacker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{background:#000;color:#00ff9c;font-family:'Share Tech Mono',monospace;overflow-y:auto}canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;opacity:0;transition:opacity 0.5s ease}
-.canvas-active{opacity:1}
-.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at top,#001b12,#000);opacity:.9;z-index:-1}
+    body{background:#000;color:#00ff9c;font-family:'Share Tech Mono',monospace;overflow-x:hidden}canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at top,#001b12,#000);opacity:.85;z-index:-1}
 
-header{display:flex;justify-content:space-between;align-items:center;padding:18px;position:relative;z-index:10;opacity:0;transform:translateY(-20px);transition:opacity 0.5s ease, transform 0.5s ease}
-header.show{opacity:1;transform:translateY(0)}
-header h1{color:#00ff9c;font-size:20px}
+header{text-align:center;padding:20px;position:relative;z-index:5}
+header h1{font-size:22px}
 
-section{padding:60px 20px;min-height:auto;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease, transform 0.5s ease}
-section.show{opacity:1;transform:translateY(0)}
+section{padding:80px 20px;position:relative;z-index:5}
 
-.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:10}
-.hero h2{font-size:36px;color:#eafff6;opacity:0;transform:translateY(15px);transition:opacity 0.5s ease, transform 0.5s ease}
-.hero h2.show{opacity:1;transform:translateY(0)}
+.hero{text-align:center}
+.hero h2{font-size:38px;color:#eafff6}
 .hero h2 span{color:#00ff9c}
-.hero h3{margin:14px 0;font-weight:400;color:#00cc88;opacity:0;transform:translateY(15px);transition:opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s}
-.hero h3.show{opacity:1;transform:translateY(0)}
-.hero p{max-width:620px;opacity:0;margin-bottom:28px;font-family:'Poppins',sans-serif;color:#c9fff0;transition:opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;transform:translateY(15px)}
-.hero p.show{opacity:1;transform:translateY(0)}
+.hero h3{margin:12px 0;font-weight:400;color:#00cc88}
+.hero p{max-width:620px;margin:0 auto 30px;font-family:'Poppins',sans-serif;color:#c9fff0}
 
-.btns{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;opacity:0;transform:translateY(15px);transition:opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s}
-.btns.show{opacity:1;transform:translateY(0)}
-.btn{padding:12px 26px;border-radius:6px;border:1px solid #00ff9c;color:#00ff9c;text-decoration:none;text-transform:uppercase;font-size:14px;letter-spacing:1px;transition:all 0.3s ease}
-.btn:hover{background:#00ff9c;color:#000;transform:scale(1.05)}
+.btns{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+.btn{padding:12px 26px;border:1px solid #00ff9c;color:#00ff9c;text-decoration:none;border-radius:6px;transition:.3s}
+.btn:hover{background:#00ff9c;color:#000;box-shadow:0 0 20px #00ff9c}
 
-.profile{margin-top:40px;opacity:0;transform:translateY(15px);transition:opacity 0.5s ease 0.4s, transform 0.5s ease 0.4s}
-.profile.show{opacity:1;transform:translateY(0)}
-.profile img{width:220px;height:220px;border-radius:50%;border:3px solid #00ff9c;object-fit:cover;box-shadow:0 0 25px rgba(0,255,156,.6)}
+.profile{margin-top:40px}
+.profile img{width:200px;height:200px;border-radius:50%;border:3px solid #00ff9c;box-shadow:0 0 25px rgba(0,255,156,.7)}
 
-footer{text-align:center;padding:18px;opacity:.6;position:relative;z-index:10;font-size:13px}
+.box{text-align:center;max-width:800px;margin:0 auto}
+.box h2{margin-bottom:15px}
+
+footer{text-align:center;padding:18px;font-size:13px;opacity:.6;z-index:5;position:relative}
 
   </style>
 </head>
@@ -43,58 +38,65 @@ footer{text-align:center;padding:18px;opacity:.6;position:relative;z-index:10;fo
 
 <div class="overlay"></div><header>
   <h1>&lt;/&gt; Shivansh_Codex</h1>
-</header><section class="hero" id="home">
+</header><section class="hero">
   <h2>HI, I'M <span>SHIVANSH</span></h2>
-  <h3>Student • Developer • Hacker Mindset</h3>
-  <p>Welcome to my cyber space. tools and creative digital projects Ethical Hacker. Stay connected.</p>  <div class="btns">
-    <a href="https://www.instagram.com/shivansh_up_70" target="_blank" class="btn">Let's Talk</a>
+  <h3>Student • Developer • Ethical Hacker</h3>
+  <p>Welcome to my cyber space. Tools and creative digital projects with an ethical hacker mindset.</p>  <div class="btns">
     <a href="https://www.instagram.com/shivansh_up_70" target="_blank" class="btn">Instagram</a>
     <a href="https://t.me/Shivansh_Codex" target="_blank" class="btn">Telegram</a>
   </div>  <div class="profile">
-    <img src="profile.png" alt="Shivansh Profile" />
+    <img src="profile.png" alt="Profile" />
   </div>
-</section><section id="about" class="hero">
-  <h2><span>About Me</span></h2>
-  <p>I am an Ethical Hacker mindset learner and developer. I love building hacker-style UIs, secure tools and creative digital projects with a cyber theme.</p>
-</section><section id="skills" class="hero">
-  <h2><span>Skills</span></h2>
-  <p>HTML • CSS • JavaScript • Cyber UI Design • Ethical Hacking Basics • Automation • Creative Coding</p>
+</section><section class="box" id="about">
+  <h2>About Me</h2>
+  <p>I am learning ethical hacking and web development. I enjoy creating hacker-style UIs, cyber themed websites and digital tools.</p>
+</section><section class="box" id="skills">
+  <h2>Skills</h2>
+  <p>HTML • CSS • JavaScript • Cyber UI Design • Ethical Hacking Basics • Creative Coding</p>
 </section><footer>
-  © 2021 Shivansh Codex | Ethical hacker
+  © 2021 Shivansh Codex | Ethical Hacker
 </footer><script>
 // MATRIX EFFECT
 const mCanvas=document.getElementById('matrix');
 const mCtx=mCanvas.getContext('2d');
 function resizeMatrix(){mCanvas.width=innerWidth;mCanvas.height=innerHeight}
-resizeMatrix();addEventListener('resize',resizeMatrix);
-const letters='01ABCDEFGHIJKLMNOPQRSTUVWXYZ';const fontSize=16;let columns;let drops;
-function initMatrix(){columns=mCanvas.width/fontSize;drops=Array.from({length:columns}).fill(1)}
-initMatrix();
-function drawMatrix(){mCtx.fillStyle='rgba(0,0,0,0.05)';mCtx.fillRect(0,0,mCanvas.width,mCanvas.height);mCtx.fillStyle='#00ff9c';mCtx.font=fontSize+'px monospace';for(let i=0;i<drops.length;i++){const text=letters[Math.floor(Math.random()*letters.length)];mCtx.fillText(text,i*fontSize,drops[i]*fontSize);if(drops[i]*fontSize>mCanvas.height&&Math.random()>0.975)drops[i]=0;drops[i]++}}
+resizeMatrix();window.addEventListener('resize',resizeMatrix);
+const letters='01ABCDEFGHIJKLMNOPQRSTUVWXYZ';const fontSize=16;
+let columns=Math.floor(innerWidth/fontSize);
+let drops=Array(columns).fill(1);
+function drawMatrix(){
+  mCtx.fillStyle='rgba(0,0,0,0.05)';
+  mCtx.fillRect(0,0,mCanvas.width,mCanvas.height);
+  mCtx.fillStyle='#00ff9c';
+  mCtx.font=fontSize+'px monospace';
+  for(let i=0;i<drops.length;i++){
+    const text=letters[Math.floor(Math.random()*letters.length)];
+    mCtx.fillText(text,i*fontSize,drops[i]*fontSize);
+    if(drops[i]*fontSize>mCanvas.height&&Math.random()>0.975)drops[i]=0;
+    drops[i]++;
+  }
+}
 setInterval(drawMatrix,33);
 
 // PARTICLES EFFECT
-const pCanvas=document.getElementById('particles');const pCtx=pCanvas.getContext('2d');
+const pCanvas=document.getElementById('particles');
+const pCtx=pCanvas.getContext('2d');
 function resizeParticles(){pCanvas.width=innerWidth;pCanvas.height=innerHeight}
-resizeParticles();addEventListener('resize',resizeParticles);
-let particles=[];for(let i=0;i<80;i++){particles.push({x:Math.random()*pCanvas.width,y:Math.random()*pCanvas.height,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5})}
-function drawParticles(){pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);for(let i=0;i<particles.length;i++){let p=particles[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>pCanvas.width)p.vx*=-1;if(p.y<0||p.y>pCanvas.height)p.vy*=-1;pCtx.fillStyle='#00ff9c';pCtx.fillRect(p.x,p.y,2,2);for(let j=i;j<particles.length;j++){let q=particles[j];let dx=p.x-q.x,dy=p.y-q.y;let dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){pCtx.strokeStyle='rgba(0,255,156,0.12)';pCtx.beginPath();pCtx.moveTo(p.x,p.y);pCtx.lineTo(q.x,q.y);pCtx.stroke()}}}requestAnimationFrame(drawParticles)}
+resizeParticles();window.addEventListener('resize',resizeParticles);
+let particles=[];
+for(let i=0;i<60;i++)particles.push({x:Math.random()*pCanvas.width,y:Math.random()*pCanvas.height,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6});
+function drawParticles(){
+  pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
+  for(let i=0;i<particles.length;i++){
+    let p=particles[i];
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>pCanvas.width)p.vx*=-1;
+    if(p.y<0||p.y>pCanvas.height)p.vy*=-1;
+    pCtx.fillStyle='#00ff9c';
+    pCtx.fillRect(p.x,p.y,2,2);
+  }
+  requestAnimationFrame(drawParticles);
+}
 drawParticles();
-
-// PAGE LOAD ANIMATION
-window.addEventListener('load',()=>{
-  document.getElementById('matrix').classList.add('canvas-active');
-  document.getElementById('particles').classList.add('canvas-active');
-  document.querySelector('header').classList.add('show');
-  document.querySelector('#home h2').classList.add('show');
-  document.querySelector('#home h3').classList.add('show');
-  document.querySelector('#home p').classList.add('show');
-  document.querySelector('.btns').classList.add('show');
-  document.querySelector('.profile').classList.add('show');
-
-  // Show About and Skills quickly after load
-  document.querySelector('#about').classList.add('show');
-  document.querySelector('#skills').classList.add('show');
-});
 </script></body>
 </html>
