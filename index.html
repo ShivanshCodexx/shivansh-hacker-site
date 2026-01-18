@@ -13,10 +13,22 @@ header{display:flex;justify-content:space-between;align-items:center;padding:18p
 header h1{color:#00ff9c;font-size:20px}
 
 nav.menu{font-size:26px;cursor:pointer;color:#00ff9c;position:relative}
-.menu .dropdown{display:none;position:absolute;right:0;top:35px;background:#000;border:1px solid #00ff9c;border-radius:6px;overflow:hidden;min-width:160px}
+.menu .dropdown{
+  display:none;
+  position:absolute;
+  right:0;
+  top:35px;
+  background:rgba(0,0,0,0.95);
+  backdrop-filter: blur(8px);
+  border:1px solid #00ff9c;
+  border-radius:8px;
+  overflow:hidden;
+  min-width:160px;
+  box-shadow:0 0 30px rgba(0,255,156,0.35);
+}
 .menu.open .dropdown{display:block;animation:fade .3s ease}
 @keyframes fade{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
-.menu .dropdown a{display:block;padding:10px 14px;color:#00ff9c;text-decoration:none;border-bottom:1px solid rgba(0,255,156,.2)}
+.menu .dropdown a{display:block;padding:10px 14px;color:#00ff9c;text-decoration:none;border-bottom:1px solid rgba(0,255,156,.2);font-weight:600;text-shadow:0 0 6px rgba(0,255,156,0.4)}
 .menu .dropdown a:last-child{border-bottom:none}
 .menu .dropdown a:hover{background:#00ff9c;color:#000}
 
