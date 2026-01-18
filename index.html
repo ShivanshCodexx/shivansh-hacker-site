@@ -1,42 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Shivansh Sharma | Cybersecurity</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
+  <meta charset="UTF-8">
+  <title>Shivansh Sharma | Hacker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-<!-- CYBER BACKGROUND -->
-<div class="cyber-bg"></div>
-
-<!-- MAIN CARD -->
-<div class="card">
-  <img src="profile.png" class="profile">
-
-  <h1>Shivansh Sharma</h1>
-  <h2>Cybersecurity Student</h2>
-
-  <div class="skills">
-    <span>Linux</span>
-    <span>Networking</span>
-    <span>Web Security</span>
-    <span>Python</span>
-    <span>JavaScript</span>
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-text">Initializing System...</div>
   </div>
 
-  <div class="buttons">
-    <a href="https://www.instagram.com/shivansh_up_70" target="_blank">
-      <i class="fab fa-instagram"></i> Instagram
-    </a>
-    <a href="https://t.me/Shivansh_Codex" target="_blank">
-      <i class="fab fa-telegram"></i> Telegram
-    </a>
-  </div>
-</div>
+  <!-- Matrix Background -->
+  <canvas id="matrix"></canvas>
 
+  <!-- Main Content -->
+  <div class="terminal hidden">
+    <img src="profile.png" class="profile">
+    <h1 class="glitch">Shivansh Sharma</h1>
+    <p id="typing"></p>
+
+    <div class="links">
+      <a href="https://www.instagram.com/shivansh_up_70" target="_blank">Instagram</a>
+      <a href="https://t.me/Shivansh_Codex" target="_blank">Telegram</a>
+    </div>
+  </div>
+
+  <script src="matrix.js"></script>
+  <script src="loader.js"></script>
+  <script src="typing.js"></script>
+  <script src="terminal.js"></script>
 </body>
 </html>
