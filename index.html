@@ -21,7 +21,8 @@ body{
 canvas{
   position:fixed;
   top:0;left:0;
-  width:100%;height:100%;
+  width:100%;
+  height:100%;
   z-index:-2;
 }
 .overlay{
@@ -126,7 +127,7 @@ footer{
   <h1>&lt;/&gt; Shivansh_Codex</h1>
 </header>
 
-<section class="hero" id="home">
+<section class="hero">
   <h2>HI, I'M <span>SHIVANSH</span></h2>
   <h3>Student • Developer • Ethical Hacker</h3>
   <p>Welcome to my cyber space. Tools and creative digital projects with an ethical hacker mindset.</p>
@@ -142,77 +143,101 @@ footer{
   </div>
 </section>
 
-<section id="about" class="about-box">
+<section class="about-box">
   <h2>About Me</h2>
   <p>
     I am an Ethical Hacker and web developer with a passion for cybersecurity
-    and creative digital projects. I specialize in Ethical Programming, secure tools,
+    and creative digital projects. I specialize in hacker-style UIs, secure tools,
     and innovative web applications while maintaining an ethical approach.
   </p>
 </section>
 
-<section id="skills" class="skills-box">
+<section class="skills-box">
   <h2>Skills</h2>
   <p>
     • HTML, CSS, JavaScript<br>
     • Cyber UI Design<br>
     • Ethical Hacking Basics<br>
     • Web Security & Automation<br>
-    • Creative Coding & Detective
+    • Creative Coding
   </p>
 </section>
 
 <footer>
-  © 2020 Shivansh Codex | Ethical Hacker
+  © 2025 Shivansh Codex | Ethical Hacker
 </footer>
 
 <script>
-/* MATRIX */
-const mc=document.getElementById("matrix");
-const mctx=mc.getContext("2d");
-mc.width=innerWidth;mc.height=innerHeight;
-const letters="01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const fs=16;
-let cols=mc.width/fs;
-let drops=Array(cols).fill(1);
+/* ---------- CANVAS RESIZE FIX ---------- */
+const dpr = window.devicePixelRatio || 1;
+function resizeCanvas(canvas, ctx){
+  canvas.width = innerWidth * dpr;
+  canvas.height = innerHeight * dpr;
+  canvas.style.width = innerWidth + "px";
+  canvas.style.height = innerHeight + "px";
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+
+/* ---------- MATRIX ---------- */
+const mc = document.getElementById("matrix");
+const mctx = mc.getContext("2d");
+resizeCanvas(mc, mctx);
+
+const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const fs = 16;
+let cols = Math.floor(innerWidth / fs);
+let drops = Array(cols).fill(1);
 
 function matrix(){
-  mctx.fillStyle="rgba(0,0,0,0.05)";
-  mctx.fillRect(0,0,mc.width,mc.height);
+  mctx.fillStyle="rgba(0,0,0,0.08)";
+  mctx.fillRect(0,0,innerWidth,innerHeight);
   mctx.fillStyle="#00ff9c";
   mctx.font=fs+"px monospace";
+
   for(let i=0;i<drops.length;i++){
-    const t=letters[Math.floor(Math.random()*letters.length)];
-    mctx.fillText(t,i*fs,drops[i]*fs);
-    if(drops[i]*fs>mc.height && Math.random()>0.975)drops[i]=0;
+    const text=letters[Math.floor(Math.random()*letters.length)];
+    mctx.fillText(text,i*fs,drops[i]*fs);
+    if(drops[i]*fs>innerHeight && Math.random()>0.97){
+      drops[i]=0;
+    }
     drops[i]++;
   }
 }
 setInterval(matrix,40);
 
-/* PARTICLES (light) */
+/* ---------- PARTICLES ---------- */
 const pc=document.getElementById("particles");
 const pctx=pc.getContext("2d");
-pc.width=innerWidth;pc.height=innerHeight;
-let ps=[...Array(50)].map(()=>({
-  x:Math.random()*pc.width,
-  y:Math.random()*pc.height,
-  vx:(Math.random()-.5)*.3,
-  vy:(Math.random()-.5)*.3
+resizeCanvas(pc,pctx);
+
+let ps=Array.from({length:50},()=>({
+  x:Math.random()*innerWidth,
+  y:Math.random()*innerHeight,
+  vx:(Math.random()-.5)*0.4,
+  vy:(Math.random()-.5)*0.4
 }));
 
 function particles(){
-  pctx.clearRect(0,0,pc.width,pc.height);
+  pctx.clearRect(0,0,innerWidth,innerHeight);
   ps.forEach(p=>{
-    p.x+=p.vx;p.y+=p.vy;
-    if(p.x<0||p.x>pc.width)p.vx*=-1;
-    if(p.y<0||p.y>pc.height)p.vy*=-1;
+    p.x+=p.vx;
+    p.y+=p.vy;
+    if(p.x<0||p.x>innerWidth)p.vx*=-1;
+    if(p.y<0||p.y>innerHeight)p.vy*=-1;
     pctx.fillStyle="#00ff9c";
     pctx.fillRect(p.x,p.y,2,2);
   });
   requestAnimationFrame(particles);
 }
 particles();
+
+/* ---------- RESIZE EVENT ---------- */
+window.addEventListener("resize",()=>{
+  resizeCanvas(mc,mctx);
+  resizeCanvas(pc,pctx);
+  cols=Math.floor(innerWidth/fs);
+  drops=Array(cols).fill(1);
+});
 </script>
 
 </body>
