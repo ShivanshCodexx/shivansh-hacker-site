@@ -10,23 +10,22 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
+/* BODY */
 body{
   background:#000;
   color:#00ff9c;
   font-family:'Share Tech Mono',monospace;
-  overflow-y:auto;
+  overflow-x:hidden;
 }
 
 /* CANVAS */
 canvas{
   position:fixed;
-  top:0;left:0;
-  width:100%;height:100%;
-  z-index:-2;
-  opacity:0;
-  transition:opacity 1s ease;
+  top:0; left:0;
+  width:100%; height:100%;
 }
-.canvas-active{opacity:1}
+#matrix { z-index:-2; }
+#particles { z-index:-1; }
 
 /* OVERLAY */
 .overlay{
@@ -34,7 +33,7 @@ canvas{
   inset:0;
   background:radial-gradient(circle at top,#001b12,#000);
   opacity:.9;
-  z-index:-1;
+  z-index:0;
 }
 
 /* HEADER */
@@ -46,8 +45,15 @@ header{
   opacity:0;
   transform:translateY(-30px);
   transition:1s;
+  z-index:10;
+  position:relative;
 }
 header.show{opacity:1;transform:none}
+header h1{
+  color:#00ff9c;
+  font-size:20px;
+  text-align:center;
+}
 
 /* SECTIONS */
 section{
@@ -55,6 +61,7 @@ section{
   opacity:0;
   transform:translateY(40px);
   transition:0.9s ease;
+  z-index:5;
 }
 section.show{
   opacity:1;
@@ -64,6 +71,7 @@ section.show{
 /* HERO */
 .hero{
   text-align:center;
+  z-index:10;
 }
 .hero h2,
 .hero h3,
@@ -74,11 +82,7 @@ section.show{
   transform:translateY(25px);
   transition:0.8s ease;
 }
-.hero .show{
-  opacity:1;
-  transform:none;
-}
-
+.hero .show{opacity:1; transform:none;}
 .hero h2{font-size:36px;color:#eafff6}
 .hero h2 span{color:#00ff9c}
 .hero h3{margin:14px 0;color:#00cc88}
@@ -113,6 +117,7 @@ section.show{
   border-radius:50%;
   border:3px solid #00ff9c;
   box-shadow:0 0 25px rgba(0,255,156,.6);
+  object-fit:cover;
 }
 
 /* BOXES */
@@ -125,7 +130,7 @@ section.show{
   border-radius:8px;
   box-shadow:0 0 20px rgba(0,255,156,.3);
 }
-.about-box p,.skills-box p{line-height:1.6}
+.about-box p,.skills-box p{line-height:1.6;opacity:0.9}
 
 /* FOOTER */
 footer{
@@ -133,6 +138,8 @@ footer{
   padding:18px;
   opacity:.6;
   font-size:13px;
+  z-index:10;
+  position:relative;
 }
 </style>
 </head>
@@ -159,13 +166,15 @@ footer{
   </div>
 
   <div class="profile">
-    <img src="profile.png">
+    <img src="profile.png" alt="Shivansh Profile" />
   </div>
 </section>
 
 <section id="about" class="about-box">
   <h2>About Me</h2>
-  <p>I am an Ethical Hacker & Web Developer who operates where systems fail and security breaks. I expose vulnerabilities before they become disasters and build systems that cannot be exploited.</p>
+  <p>I am an Ethical Hacker & Web Developer who operates where systems fail and security breaks.
+I specialize in uncovering vulnerabilities before they become disasters—mastering advanced cybersecurity tools, penetration techniques, and secure architectures. My work doesn’t just look powerful, it is powerful: precision-built web applications designed with control, dominance, and ethics at the core.
+I don’t break systems for chaos—I expose their weaknesses so they can never be exploited again.</p>
 </section>
 
 <section id="skills" class="skills-box">
@@ -174,22 +183,110 @@ footer{
     • HTML, CSS, JavaScript<br>
     • Cyber UI Design & Animation<br>
     • Ethical Hacking Basics<br>
-    • Web Security & Automation
+    • Web Security & Automation<br>
+    • Creative Coding & Tool Development<br>
+    • Problem Solving & Digital Innovation
   </p>
 </section>
 
 <footer>© 2021 Shivansh Codex | Ethical Hacker</footer>
 
 <script>
-// SHOW ON LOAD
-window.addEventListener('load',()=>{
-  document.querySelectorAll('canvas').forEach(c=>c.classList.add('canvas-active'));
+// ----------------- MATRIX BACKGROUND -----------------
+const mCanvas = document.getElementById('matrix');
+const mCtx = mCanvas.getContext('2d');
+
+function resizeMatrix(){
+  mCanvas.width = window.innerWidth;
+  mCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeMatrix);
+resizeMatrix();
+
+const letters = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const fontSize = 16;
+let columns = mCanvas.width / fontSize;
+let drops = Array.from({length:columns}).fill(1);
+
+function drawMatrix(){
+  mCtx.fillStyle = 'rgba(0,0,0,0.05)';
+  mCtx.fillRect(0,0,mCanvas.width,mCanvas.height);
+  mCtx.fillStyle = '#00ff9c';
+  mCtx.font = fontSize+'px monospace';
+  for(let i=0;i<drops.length;i++){
+    const text = letters[Math.floor(Math.random()*letters.length)];
+    mCtx.fillText(text, i*fontSize, drops[i]*fontSize);
+    if(drops[i]*fontSize > mCanvas.height && Math.random()>0.975) drops[i]=0;
+    drops[i]++;
+  }
+}
+setInterval(drawMatrix,33);
+
+// ----------------- PARTICLES BACKGROUND -----------------
+const pCanvas = document.getElementById('particles');
+const pCtx = pCanvas.getContext('2d');
+
+function resizeParticles(){
+  pCanvas.width = window.innerWidth;
+  pCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeParticles);
+resizeParticles();
+
+let particles = [];
+for(let i=0;i<80;i++){
+  particles.push({
+    x:Math.random()*pCanvas.width,
+    y:Math.random()*pCanvas.height,
+    vx:(Math.random()-0.5)*0.5,
+    vy:(Math.random()-0.5)*0.5
+  });
+}
+
+function drawParticles(){
+  pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
+  for(let i=0;i<particles.length;i++){
+    let p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    if(p.x<0||p.x>pCanvas.width)p.vx*=-1;
+    if(p.y<0||p.y>pCanvas.height)p.vy*=-1;
+
+    pCtx.fillStyle='#00ff9c';
+    pCtx.fillRect(p.x,p.y,2,2);
+
+    for(let j=i;j<particles.length;j++){
+      let q = particles[j];
+      let dx = p.x - q.x;
+      let dy = p.y - q.y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist<120){
+        pCtx.strokeStyle='rgba(0,255,156,0.12)';
+        pCtx.beginPath();
+        pCtx.moveTo(p.x,p.y);
+        pCtx.lineTo(q.x,q.y);
+        pCtx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ----------------- PAGE LOAD ANIMATION -----------------
+window.addEventListener('load', ()=>{
   document.querySelector('header').classList.add('show');
-
-  document.querySelectorAll('.hero h2, .hero h3, .hero p, .btns, .profile')
-    .forEach(el=>el.classList.add('show'));
-
+  document.querySelectorAll('.hero h2, .hero h3, .hero p, .btns, .profile').forEach(el=>el.classList.add('show'));
   document.querySelectorAll('section').forEach(sec=>sec.classList.add('show'));
+});
+
+// ----------------- SCROLL ANIMATION -----------------
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll', ()=>{
+  sections.forEach(sec=>{
+    const top = sec.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100) sec.classList.add('show');
+  });
 });
 </script>
 
