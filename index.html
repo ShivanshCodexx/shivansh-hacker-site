@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shivansh Codex</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -14,33 +14,48 @@ body{
   background:#000;
   color:#00ff9c;
   font-family:'Share Tech Mono',monospace;
-  overflow-y:auto;
+  overflow-x:hidden;
 }
 
-/* BACKGROUND */
-canvas{
-  position:fixed;
-  top:0;left:0;
-  width:100%;
-  height:100%;
-  z-index:-2;
-}
-.overlay{
+/* 🔥 LIVE BACKGROUND */
+.bg{
   position:fixed;
   inset:0;
-  background:radial-gradient(circle at top,#001b12,#000);
+  z-index:-2;
+  background:
+    linear-gradient(transparent 95%, rgba(0,255,156,.15) 100%),
+    linear-gradient(90deg, transparent 95%, rgba(0,255,156,.15) 100%);
+  background-size:40px 40px;
+  animation:gridMove 12s linear infinite;
+}
+
+@keyframes gridMove{
+  from{background-position:0 0,0 0}
+  to{background-position:400px 400px,400px 400px}
+}
+
+.glow{
+  position:fixed;
+  inset:0;
   z-index:-1;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,255,156,.15), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(0,255,156,.12), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(0,255,156,.1), transparent 50%);
+  animation: glowMove 10s ease-in-out infinite alternate;
+}
+
+@keyframes glowMove{
+  from{filter:blur(0px)}
+  to{filter:blur(6px)}
 }
 
 /* HEADER */
 header{
-  display:flex;
-  justify-content:center;
+  text-align:center;
   padding:18px;
 }
-header h1{
-  font-size:20px;
-}
+header h1{font-size:20px}
 
 /* SECTIONS */
 section{
@@ -50,10 +65,11 @@ section{
 
 .hero h2{font-size:36px;color:#eafff6}
 .hero h2 span{color:#00ff9c}
-.hero h3{margin:14px 0;color:#00cc88}
+.hero h3{margin:12px 0;color:#00cc88}
+
 .hero p{
   max-width:620px;
-  margin:0 auto 28px;
+  margin:0 auto 25px;
   font-family:'Poppins',sans-serif;
   color:#c9fff0;
 }
@@ -80,48 +96,39 @@ section{
 
 /* PROFILE */
 .profile{
-  margin-top:40px;
+  margin-top:35px;
 }
 .profile img{
-  width:220px;
-  height:220px;
+  width:200px;
+  height:200px;
   border-radius:50%;
   border:3px solid #00ff9c;
-  box-shadow:0 0 25px rgba(0,255,156,.6);
+  box-shadow:0 0 30px rgba(0,255,156,.6);
 }
 
-/* ABOUT & SKILLS */
-.about-box,.skills-box{
+/* BOXES */
+.box{
   max-width:800px;
-  margin:0 auto 40px;
+  margin:40px auto;
   padding:40px 20px;
   border:1px solid #00ff9c;
   border-radius:10px;
   box-shadow:0 0 20px rgba(0,255,156,.3);
 }
-.about-box h2,.skills-box h2{
-  margin-bottom:15px;
-  text-shadow:0 0 10px #00ff9c;
-}
-.about-box p,.skills-box p{
-  line-height:1.6;
-  opacity:.9;
-}
 
-/* FOOTER */
 footer{
   padding:18px;
   opacity:.6;
   font-size:13px;
+  text-align:center;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
-<canvas id="particles"></canvas>
-<div class="overlay"></div>
+<div class="bg"></div>
+<div class="glow"></div>
 
 <header>
   <h1>&lt;/&gt; Shivansh_Codex</h1>
@@ -130,35 +137,32 @@ footer{
 <section class="hero">
   <h2>HI, I'M <span>SHIVANSH</span></h2>
   <h3>Student • Developer • Ethical Hacker</h3>
-  <p>Welcome to my cyber space. Tools and creative digital projects with an ethical hacker mindset.</p>
+  <p>Welcome to my cyber space. Creative coding with an ethical hacker mindset.</p>
 
   <div class="btns">
-    <a href="https://www.instagram.com/shivansh_up_70" target="_blank" class="btn">Let's Talk</a>
-    <a href="https://www.instagram.com/shivansh_up_70" target="_blank" class="btn">Instagram</a>
-    <a href="https://t.me/Shivansh_Codex" target="_blank" class="btn">Telegram</a>
+    <a href="https://www.instagram.com/shivansh_up_70" class="btn" target="_blank">Instagram</a>
+    <a href="https://t.me/Shivansh_Codex" class="btn" target="_blank">Telegram</a>
   </div>
 
   <div class="profile">
-    <img src="profile.png" alt="Shivansh Profile">
+    <img src="profile.png" alt="Profile">
   </div>
 </section>
 
-<section class="about-box">
+<section class="box">
   <h2>About Me</h2>
   <p>
-    I am an Ethical Hacker and web developer with a passion for cybersecurity
-    and creative digital projects. I specialize in hacker-style UIs, secure tools,
-    and innovative web applications while maintaining an ethical approach.
+    Ethical hacker & web developer focused on cybersecurity,
+    creative UI design and secure web experiences.
   </p>
 </section>
 
-<section class="skills-box">
+<section class="box">
   <h2>Skills</h2>
   <p>
-    • HTML, CSS, JavaScript<br>
+    • HTML • CSS • JavaScript<br>
     • Cyber UI Design<br>
     • Ethical Hacking Basics<br>
-    • Web Security & Automation<br>
     • Creative Coding
   </p>
 </section>
@@ -166,79 +170,6 @@ footer{
 <footer>
   © 2025 Shivansh Codex | Ethical Hacker
 </footer>
-
-<script>
-/* ---------- CANVAS RESIZE FIX ---------- */
-const dpr = window.devicePixelRatio || 1;
-function resizeCanvas(canvas, ctx){
-  canvas.width = innerWidth * dpr;
-  canvas.height = innerHeight * dpr;
-  canvas.style.width = innerWidth + "px";
-  canvas.style.height = innerHeight + "px";
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-}
-
-/* ---------- MATRIX ---------- */
-const mc = document.getElementById("matrix");
-const mctx = mc.getContext("2d");
-resizeCanvas(mc, mctx);
-
-const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const fs = 16;
-let cols = Math.floor(innerWidth / fs);
-let drops = Array(cols).fill(1);
-
-function matrix(){
-  mctx.fillStyle="rgba(0,0,0,0.08)";
-  mctx.fillRect(0,0,innerWidth,innerHeight);
-  mctx.fillStyle="#00ff9c";
-  mctx.font=fs+"px monospace";
-
-  for(let i=0;i<drops.length;i++){
-    const text=letters[Math.floor(Math.random()*letters.length)];
-    mctx.fillText(text,i*fs,drops[i]*fs);
-    if(drops[i]*fs>innerHeight && Math.random()>0.97){
-      drops[i]=0;
-    }
-    drops[i]++;
-  }
-}
-setInterval(matrix,40);
-
-/* ---------- PARTICLES ---------- */
-const pc=document.getElementById("particles");
-const pctx=pc.getContext("2d");
-resizeCanvas(pc,pctx);
-
-let ps=Array.from({length:50},()=>({
-  x:Math.random()*innerWidth,
-  y:Math.random()*innerHeight,
-  vx:(Math.random()-.5)*0.4,
-  vy:(Math.random()-.5)*0.4
-}));
-
-function particles(){
-  pctx.clearRect(0,0,innerWidth,innerHeight);
-  ps.forEach(p=>{
-    p.x+=p.vx;
-    p.y+=p.vy;
-    if(p.x<0||p.x>innerWidth)p.vx*=-1;
-    if(p.y<0||p.y>innerHeight)p.vy*=-1;
-    pctx.fillStyle="#00ff9c";
-    pctx.fillRect(p.x,p.y,2,2);
-  });
-  requestAnimationFrame(particles);
-}
-particles();
-
-/* ---------- RESIZE EVENT ---------- */
-window.addEventListener("resize",()=>{
-  resizeCanvas(mc,mctx);
-  resizeCanvas(pc,pctx);
-  cols=Math.floor(innerWidth/fs);
-  drops=Array(cols).fill(1);
-});
-</script>
 
 </body>
 </html>
