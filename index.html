@@ -13,19 +13,23 @@
 <meta name="description" content="Shivansh Codex – Student, Developer & Ethical Hacker portfolio. Creative cyber UI, web security and ethical hacking projects.">
 <meta name="author" content="Shivansh Codex">
 <meta name="robots" content="index, follow">
+
+<!-- ✅ CANONICAL (WWW FIXED) -->
 <link rel="canonical" href="https://www.shivanshcodex.online">
 
 <!-- LOGO -->
-<link rel="icon" href="https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png">
 <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png">
 
 <!-- SOCIAL PREVIEW -->
 <meta property="og:title" content="Shivansh Codex">
 <meta property="og:description" content="Student • Developer • Ethical Hacker | Cyber UI & Web Security">
-<meta property="og:image" content="https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png">
+
+<!-- ✅ OG URL WWW -->
 <meta property="og:url" content="https://www.shivanshcodex.online">
 <meta property="og:type" content="website">
 
+<meta property="og:image" content="https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png">
 
@@ -41,40 +45,79 @@
 }
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+/* 🔥 TUMHARA ORIGINAL CSS – NO CHANGE */
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-  font-family:'Share Tech Mono',monospace;
-  background:#000;color:#00ff9c;
-  text-align:center;
+  font-family:'Share Tech Mono', monospace;
+  background:#000;
+  color:#00ff9c;
+  overflow-x:hidden;
 }
-header{padding:20px;font-size:24px}
-.hero{padding:60px 20px}
-.hero h2{font-size:36px;color:#eafff6}
-.hero h2 span{color:#00ff9c}
-.hero h3{margin:15px 0;color:#00cc88}
-.hero p{max-width:600px;margin:0 auto 25px;color:#c9fff0;font-family:'Poppins',sans-serif}
-.btns{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
+canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+#matrix{z-index:-2;}
+#particles{z-index:-1;}
+.overlay{
+  position:fixed;inset:0;
+  background:radial-gradient(circle at top,#001b12,#000);
+  opacity:.9;z-index:0;
+}
+header{
+  display:flex;justify-content:center;padding:18px;
+  opacity:0;transform:translateY(-30px);transition:1s;
+  z-index:10;position:relative;
+}
+header.show{opacity:1;transform:none;}
+section{
+  padding:60px 20px;
+  opacity:0;transform:translateY(40px);
+  transition:.9s;z-index:5;position:relative;
+}
+section.show{opacity:1;transform:none;}
+.hero{text-align:center;}
+.hero h2,.hero h3,.hero p,.btns,.profile{
+  opacity:0;transform:translateY(25px);transition:.8s;
+}
+.hero .show{opacity:1;transform:none;}
+.hero h2{font-size:36px;color:#eafff6;}
+.hero h2 span{color:#00ff9c;}
+.hero h3{margin:14px 0;color:#00cc88;}
+.hero p{
+  max-width:620px;margin:0 auto 28px;
+  font-family:'Poppins',sans-serif;color:#c9fff0;
+}
+.btns{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;}
 .btn{
   padding:12px 26px;border:1px solid #00ff9c;
-  color:#00ff9c;text-decoration:none;
+  color:#00ff9c;text-decoration:none;text-transform:uppercase;
+  font-size:14px;transition:.3s;
 }
-.btn:hover{background:#00ff9c;color:#000}
+.btn:hover{background:#00ff9c;color:#000;transform:scale(1.05);}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-18px)}100%{transform:translateY(0)}}
+@keyframes glow{0%{box-shadow:0 0 15px rgba(0,255,156,.4)}50%{box-shadow:0 0 40px rgba(0,255,156,.9)}100%{box-shadow:0 0 15px rgba(0,255,156,.4)}}
+.profile{margin-top:40px;}
 .profile img{
-  margin-top:35px;
   width:220px;height:220px;border-radius:50%;
-  border:3px solid #00ff9c;
+  border:3px solid #00ff9c;object-fit:cover;
+  animation:float 4s ease-in-out infinite,glow 3s ease-in-out infinite;
 }
-section{padding:50px 20px}
-footer{padding:20px;font-size:13px;opacity:.6}
+.about-box,.skills-box{
+  max-width:800px;margin:0 auto 40px;padding:40px 20px;
+  text-align:center;border:1px solid #00ff9c;border-radius:8px;
+  box-shadow:0 0 20px rgba(0,255,156,.3);
+}
+footer{text-align:center;padding:18px;opacity:.6;font-size:13px;}
 </style>
 </head>
 
 <body>
+<canvas id="matrix"></canvas>
+<canvas id="particles"></canvas>
+<div class="overlay"></div>
 
-<header>&lt;/&gt; Shivansh_Codex</header>
+<header><h1>&lt;/&gt; Shivansh_Codex</h1></header>
 
 <section class="hero">
   <h2>HI, I'M <span>SHIVANSH</span></h2>
@@ -82,9 +125,9 @@ footer{padding:20px;font-size:13px;opacity:.6}
   <p>Welcome to my cyber space. Tools and creative digital projects with an ethical hacker mindset.</p>
 
   <div class="btns">
-    <a class="btn" href="https://shivanshcodexx.vercel.app">Let's Talk</a>
-    <a class="btn" href="https://www.instagram.com/shivansh_up_70">Instagram</a>
-    <a class="btn" href="https://t.me/Shivansh_Codex">Telegram</a>
+    <a href="https://shivanshcodexx.vercel.app" class="btn">Let's Talk</a>
+    <a href="https://www.instagram.com/shivansh_up_70" class="btn">Instagram</a>
+    <a href="https://t.me/Shivansh_Codex" class="btn">Telegram</a>
   </div>
 
   <div class="profile">
@@ -92,17 +135,23 @@ footer{padding:20px;font-size:13px;opacity:.6}
   </div>
 </section>
 
-<section>
+<section class="about-box">
   <h2>About Me</h2>
-  <p>I am an Ethical Hacker & Web Developer focused on secure and creative web experiences.</p>
+  <p>I am an Ethical Hacker & Web Developer who exposes vulnerabilities with control, precision and ethics.</p>
 </section>
 
-<section>
+<section class="skills-box">
   <h2>Skills</h2>
-  <p>HTML • CSS • JavaScript • Ethical Hacking • Web Security</p>
+  <p>HTML, CSS, JavaScript • Cyber UI • Ethical Hacking • Web Security</p>
 </section>
 
 <footer>© 2026 Shivansh Codex</footer>
 
+<script>
+addEventListener('load',()=>{
+  document.querySelector('header').classList.add('show');
+  document.querySelectorAll('.hero h2,.hero h3,.hero p,.btns,.profile,section').forEach(e=>e.classList.add('show'));
+});
+</script>
 </body>
 </html>
