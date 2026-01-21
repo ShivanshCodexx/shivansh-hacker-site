@@ -9,280 +9,144 @@
 <!-- TITLE -->
 <title>Shivansh Codex | Student, Developer & Ethical Hacker</title>
 
-<!-- SEO DESCRIPTION -->
+<!-- SEO -->
 <meta name="description" content="Shivansh Codex – Student, Developer & Ethical Hacker portfolio. Creative cyber UI, web security and ethical hacking projects.">
-
-<!-- AUTHOR -->
 <meta name="author" content="Shivansh Codex">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shivanshcodex.online">
 
-<!-- GOOGLE LOGO -->
-<link rel="icon" type="image/png" href="/profile.png">
-<link rel="apple-touch-icon" href="/profile.png">
+<!-- LOGO (GITHUB RAW) -->
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png">
 
 <!-- SOCIAL PREVIEW -->
 <meta property="og:title" content="Shivansh Codex">
 <meta property="og:description" content="Student • Developer • Ethical Hacker | Cyber UI & Web Security">
-<meta property="og:image" content="https://shivanshcodex.online/profile.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png">
 <meta property="og:url" content="https://shivanshcodex.online">
 <meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png">
+
+<!-- GOOGLE LOGO SCHEMA (MOST IMPORTANT) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Shivansh Codex",
+  "url": "https://shivanshcodex.online",
+  "logo": "https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png",
+  "image": "https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png"
+}
+</script>
 
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
   font-family:'Share Tech Mono', monospace;
   background:#000;
   color:#00ff9c;
   overflow-x:hidden;
 }
-
-/* CANVAS */
 canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
+  position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;
 }
 #matrix{z-index:-2;}
 #particles{z-index:-1;}
-
 .overlay{
-  position:fixed;
-  inset:0;
+  position:fixed;inset:0;
   background:radial-gradient(circle at top,#001b12,#000);
-  opacity:0.9;
-  z-index:0;
+  opacity:.9;z-index:0;
 }
-
-/* HEADER */
 header{
-  display:flex;
-  justify-content:center;
-  padding:18px;
-  opacity:0;
-  transform:translateY(-30px);
-  transition:1s;
-  z-index:10;
-  position:relative;
+  display:flex;justify-content:center;padding:18px;
+  opacity:0;transform:translateY(-30px);transition:1s;
+  z-index:10;position:relative;
 }
 header.show{opacity:1;transform:none;}
-header h1{font-size:20px;}
-
-/* SECTIONS */
 section{
   padding:60px 20px;
-  opacity:0;
-  transform:translateY(40px);
-  transition:.9s;
-  z-index:5;
-  position:relative;
+  opacity:0;transform:translateY(40px);
+  transition:.9s;z-index:5;position:relative;
 }
 section.show{opacity:1;transform:none;}
-
-/* HERO */
 .hero{text-align:center;}
 .hero h2,.hero h3,.hero p,.btns,.profile{
-  opacity:0;
-  transform:translateY(25px);
-  transition:.8s;
+  opacity:0;transform:translateY(25px);transition:.8s;
 }
 .hero .show{opacity:1;transform:none;}
-
 .hero h2{font-size:36px;color:#eafff6;}
 .hero h2 span{color:#00ff9c;}
 .hero h3{margin:14px 0;color:#00cc88;}
 .hero p{
-  max-width:620px;
-  margin:0 auto 28px;
-  font-family:'Poppins',sans-serif;
-  color:#c9fff0;
+  max-width:620px;margin:0 auto 28px;
+  font-family:'Poppins',sans-serif;color:#c9fff0;
 }
-
-/* BUTTONS */
 .btns{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;}
 .btn{
-  padding:12px 26px;
-  border:1px solid #00ff9c;
-  color:#00ff9c;
-  text-decoration:none;
-  text-transform:uppercase;
-  font-size:14px;
-  transition:.3s;
+  padding:12px 26px;border:1px solid #00ff9c;
+  color:#00ff9c;text-decoration:none;text-transform:uppercase;
+  font-size:14px;transition:.3s;
 }
-.btn:hover{
-  background:#00ff9c;
-  color:#000;
-  transform:scale(1.05);
-}
-
-/* PROFILE FLOAT */
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-18px); }
-  100% { transform: translateY(0); }
-}
-@keyframes glow {
-  0% { box-shadow:0 0 15px rgba(0,255,156,.4); }
-  50% { box-shadow:0 0 40px rgba(0,255,156,.9); }
-  100% { box-shadow:0 0 15px rgba(0,255,156,.4); }
-}
-
+.btn:hover{background:#00ff9c;color:#000;transform:scale(1.05);}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-18px)}100%{transform:translateY(0)}}
+@keyframes glow{0%{box-shadow:0 0 15px rgba(0,255,156,.4)}50%{box-shadow:0 0 40px rgba(0,255,156,.9)}100%{box-shadow:0 0 15px rgba(0,255,156,.4)}}
 .profile{margin-top:40px;}
 .profile img{
-  width:220px;
-  height:220px;
-  border-radius:50%;
-  border:3px solid #00ff9c;
-  object-fit:cover;
-  animation: float 4s ease-in-out infinite,
-             glow 3s ease-in-out infinite;
+  width:220px;height:220px;border-radius:50%;
+  border:3px solid #00ff9c;object-fit:cover;
+  animation:float 4s ease-in-out infinite,glow 3s ease-in-out infinite;
 }
-
-/* BOXES */
 .about-box,.skills-box{
-  max-width:800px;
-  margin:0 auto 40px;
-  padding:40px 20px;
-  text-align:center;
-  border:1px solid #00ff9c;
-  border-radius:8px;
+  max-width:800px;margin:0 auto 40px;padding:40px 20px;
+  text-align:center;border:1px solid #00ff9c;border-radius:8px;
   box-shadow:0 0 20px rgba(0,255,156,.3);
 }
-.about-box p,.skills-box p{
-  line-height:1.6;
-  opacity:.9;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:18px;
-  opacity:.6;
-  font-size:13px;
-  z-index:10;
-  position:relative;
-}
+footer{text-align:center;padding:18px;opacity:.6;font-size:13px;}
 </style>
 </head>
 
 <body>
-
 <canvas id="matrix"></canvas>
 <canvas id="particles"></canvas>
 <div class="overlay"></div>
 
-<header>
-  <h1>&lt;/&gt; Shivansh_Codex</h1>
-</header>
+<header><h1>&lt;/&gt; Shivansh_Codex</h1></header>
 
 <section class="hero">
   <h2>HI, I'M <span>SHIVANSH</span></h2>
   <h3>Student • Developer • Ethical Hacker</h3>
   <p>Welcome to my cyber space. Tools and creative digital projects with an ethical hacker mindset.</p>
-
   <div class="btns">
     <a href="https://shivanshcodexx.vercel.app" class="btn">Let's Talk</a>
     <a href="https://www.instagram.com/shivansh_up_70" class="btn">Instagram</a>
     <a href="https://t.me/Shivansh_Codex" class="btn">Telegram</a>
   </div>
-
   <div class="profile">
-    <img src="profile.png" alt="Shivansh Codex Logo">
+    <img src="https://raw.githubusercontent.com/ShivanshCodexx/shivansh-hacker-site/main/profile.png" alt="Shivansh Codex Logo">
   </div>
 </section>
 
 <section class="about-box">
   <h2>About Me</h2>
-  <p>
-    I am an Ethical Hacker & Web Developer who operates where systems fail and security breaks.
-    I expose vulnerabilities before they become disasters — with control, precision and ethics.
-  </p>
+  <p>I am an Ethical Hacker & Web Developer who exposes vulnerabilities with control, precision and ethics.</p>
 </section>
 
 <section class="skills-box">
   <h2>Skills</h2>
-  <p>
-    • HTML, CSS, JavaScript<br>
-    • Cyber UI Design & Animation<br>
-    • Ethical Hacking Basics<br>
-    • Web Security & Automation<br>
-    • Creative Coding & Tool Development
-  </p>
+  <p>HTML, CSS, JavaScript • Cyber UI • Ethical Hacking • Web Security</p>
 </section>
 
 <footer>© 2021 Shivansh Codex | Ethical Hacker</footer>
 
 <script>
-// MATRIX
-const mCanvas=document.getElementById('matrix');
-const mCtx=mCanvas.getContext('2d');
-function resizeM(){mCanvas.width=innerWidth;mCanvas.height=innerHeight;}
-resizeM();addEventListener('resize',resizeM);
-
-const letters="01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const fontSize=16;
-let cols=Math.floor(innerWidth/fontSize);
-let drops=Array(cols).fill(1);
-
-setInterval(()=>{
-  mCtx.fillStyle="rgba(0,0,0,0.05)";
-  mCtx.fillRect(0,0,mCanvas.width,mCanvas.height);
-  mCtx.fillStyle="#00ff9c";
-  mCtx.font=fontSize+"px monospace";
-  drops.forEach((y,i)=>{
-    const text=letters[Math.floor(Math.random()*letters.length)];
-    mCtx.fillText(text,i*fontSize,y*fontSize);
-    if(y*fontSize>innerHeight&&Math.random()>0.975)drops[i]=0;
-    drops[i]++;
-  });
-},33);
-
-// PARTICLES
-const pCanvas=document.getElementById('particles');
-const pCtx=pCanvas.getContext('2d');
-function resizeP(){pCanvas.width=innerWidth;pCanvas.height=innerHeight;}
-resizeP();addEventListener('resize',resizeP);
-
-let particles=[];
-for(let i=0;i<80;i++)
-particles.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5});
-
-function drawP(){
-  pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
-  particles.forEach((p,i)=>{
-    p.x+=p.vx;p.y+=p.vy;
-    if(p.x<0||p.x>innerWidth)p.vx*=-1;
-    if(p.y<0||p.y>innerHeight)p.vy*=-1;
-    pCtx.fillStyle="#00ff9c";
-    pCtx.fillRect(p.x,p.y,2,2);
-
-    particles.slice(i).forEach(q=>{
-      const dx=p.x-q.x,dy=p.y-q.y;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      if(d<120){
-        pCtx.strokeStyle="rgba(0,255,156,.12)";
-        pCtx.beginPath();
-        pCtx.moveTo(p.x,p.y);
-        pCtx.lineTo(q.x,q.y);
-        pCtx.stroke();
-      }
-    });
-  });
-  requestAnimationFrame(drawP);
-}
-drawP();
-
-// LOAD
 addEventListener('load',()=>{
   document.querySelector('header').classList.add('show');
-  document.querySelectorAll('.hero h2,.hero h3,.hero p,.btns,.profile').forEach(e=>e.classList.add('show'));
-  document.querySelectorAll('section').forEach(s=>s.classList.add('show'));
+  document.querySelectorAll('.hero h2,.hero h3,.hero p,.btns,.profile,section').forEach(e=>e.classList.add('show'));
 });
 </script>
-
 </body>
 </html>
