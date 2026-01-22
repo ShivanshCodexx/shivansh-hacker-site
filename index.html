@@ -15,7 +15,7 @@
 <meta name="author" content="Shivansh Codex">
 <meta name="robots" content="index, follow">
 
-<!-- CANONICAL (WWW FIX) -->
+<!-- CANONICAL -->
 <link rel="canonical" href="https://www.shivanshcodex.online">
 
 <!-- LOGO -->
@@ -44,35 +44,26 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
   font-family:'Share Tech Mono', monospace;
   background:#000;
   color:#00ff9c;
   overflow-x:hidden;
 }
-
-/* CANVAS */
 canvas{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  inset:0;
   pointer-events:none;
 }
 #matrix{z-index:-2;}
 #particles{z-index:-1;}
-
 .overlay{
   position:fixed;
   inset:0;
   background:radial-gradient(circle at top,#001b12,#000);
-  opacity:0.9;
+  opacity:.9;
   z-index:0;
 }
-
-/* HEADER */
 header{
   display:flex;
   justify-content:center;
@@ -80,24 +71,19 @@ header{
   opacity:0;
   transform:translateY(-30px);
   transition:1s;
-  z-index:10;
   position:relative;
+  z-index:10;
 }
 header.show{opacity:1;transform:none;}
-header h1{font-size:20px;}
-
-/* SECTIONS */
 section{
   padding:60px 20px;
   opacity:0;
   transform:translateY(40px);
   transition:.9s;
-  z-index:5;
   position:relative;
+  z-index:5;
 }
 section.show{opacity:1;transform:none;}
-
-/* HERO */
 .hero{text-align:center;}
 .hero h2,.hero h3,.hero p,.btns,.profile{
   opacity:0;
@@ -105,7 +91,6 @@ section.show{opacity:1;transform:none;}
   transition:.8s;
 }
 .hero .show{opacity:1;transform:none;}
-
 .hero h2{font-size:36px;color:#eafff6;}
 .hero h2 span{color:#00ff9c;}
 .hero h3{margin:14px 0;color:#00cc88;}
@@ -115,9 +100,12 @@ section.show{opacity:1;transform:none;}
   font-family:'Poppins',sans-serif;
   color:#c9fff0;
 }
-
-/* BUTTONS */
-.btns{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;}
+.btns{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
 .btn{
   padding:12px 26px;
   border:1px solid #00ff9c;
@@ -132,19 +120,16 @@ section.show{opacity:1;transform:none;}
   color:#000;
   transform:scale(1.05);
 }
-
-/* PROFILE FLOAT */
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-18px); }
-  100% { transform: translateY(0); }
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-18px)}
+  100%{transform:translateY(0)}
 }
-@keyframes glow {
-  0% { box-shadow:0 0 15px rgba(0,255,156,.4); }
-  50% { box-shadow:0 0 40px rgba(0,255,156,.9); }
-  100% { box-shadow:0 0 15px rgba(0,255,156,.4); }
+@keyframes glow{
+  0%{box-shadow:0 0 15px rgba(0,255,156,.4)}
+  50%{box-shadow:0 0 40px rgba(0,255,156,.9)}
+  100%{box-shadow:0 0 15px rgba(0,255,156,.4)}
 }
-
 .profile{margin-top:40px;}
 .profile img{
   width:220px;
@@ -152,11 +137,8 @@ section.show{opacity:1;transform:none;}
   border-radius:50%;
   border:3px solid #00ff9c;
   object-fit:cover;
-  animation: float 4s ease-in-out infinite,
-             glow 3s ease-in-out infinite;
+  animation:float 4s ease-in-out infinite,glow 3s ease-in-out infinite;
 }
-
-/* BOXES */
 .about-box,.skills-box{
   max-width:800px;
   margin:0 auto 40px;
@@ -166,15 +148,11 @@ section.show{opacity:1;transform:none;}
   border-radius:8px;
   box-shadow:0 0 20px rgba(0,255,156,.3);
 }
-
-/* FOOTER */
 footer{
   text-align:center;
   padding:18px;
   opacity:.6;
   font-size:13px;
-  z-index:10;
-  position:relative;
 }
 </style>
 </head>
@@ -194,10 +172,12 @@ footer{
   <h3>Student • Developer • Ethical Hacker</h3>
   <p>Welcome to my cyber space. Tools and creative digital projects with an ethical hacker mindset.</p>
 
+  <!-- 🔥 BUTTONS (UPDATED) -->
   <div class="btns">
     <a href="https://shivanshcodexx.vercel.app" class="btn">Let's Talk</a>
     <a href="https://www.instagram.com/shivansh_up_70" class="btn">Instagram</a>
     <a href="https://t.me/Shivansh_Codex" class="btn">Telegram</a>
+    <a href="https://t.me/YOUR_GROUP_USERNAME" class="btn">Group Chat</a>
   </div>
 
   <div class="profile">
@@ -207,9 +187,7 @@ footer{
 
 <section class="about-box">
   <h2>About Me</h2>
-  <p>
-    I am an Ethical Hacker & Web Developer who operates where systems fail and security breaks.
-  </p>
+  <p>I am an Ethical Hacker & Web Developer who operates where systems fail and security breaks.</p>
 </section>
 
 <section class="skills-box">
@@ -226,39 +204,31 @@ footer{
 
 <script>
 // MATRIX
-const mCanvas=document.getElementById('matrix');
-const mCtx=mCanvas.getContext('2d');
+const mCanvas=document.getElementById('matrix'),mCtx=mCanvas.getContext('2d');
 function resizeM(){mCanvas.width=innerWidth;mCanvas.height=innerHeight;}
 resizeM();addEventListener('resize',resizeM);
-
-const letters="01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const fontSize=16;
-let cols=Math.floor(innerWidth/fontSize);
-let drops=Array(cols).fill(1);
-
+const letters="01ABCDEFGHIJKLMNOPQRSTUVWXYZ",fontSize=16;
+let cols=Math.floor(innerWidth/fontSize),drops=Array(cols).fill(1);
 setInterval(()=>{
   mCtx.fillStyle="rgba(0,0,0,0.05)";
   mCtx.fillRect(0,0,mCanvas.width,mCanvas.height);
   mCtx.fillStyle="#00ff9c";
   mCtx.font=fontSize+"px monospace";
   drops.forEach((y,i)=>{
-    const text=letters[Math.floor(Math.random()*letters.length)];
-    mCtx.fillText(text,i*fontSize,y*fontSize);
-    if(y*fontSize>innerHeight&&Math.random()>0.975)drops[i]=0;
+    const t=letters[Math.floor(Math.random()*letters.length)];
+    mCtx.fillText(t,i*fontSize,y*fontSize);
+    if(y*fontSize>innerHeight&&Math.random()>.975)drops[i]=0;
     drops[i]++;
   });
 },33);
 
 // PARTICLES
-const pCanvas=document.getElementById('particles');
-const pCtx=pCanvas.getContext('2d');
+const pCanvas=document.getElementById('particles'),pCtx=pCanvas.getContext('2d');
 function resizeP(){pCanvas.width=innerWidth;pCanvas.height=innerHeight;}
 resizeP();addEventListener('resize',resizeP);
-
 let particles=[];
 for(let i=0;i<80;i++)
 particles.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5});
-
 function drawP(){
   pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
   particles.forEach((p,i)=>{
@@ -267,10 +237,8 @@ function drawP(){
     if(p.y<0||p.y>innerHeight)p.vy*=-1;
     pCtx.fillStyle="#00ff9c";
     pCtx.fillRect(p.x,p.y,2,2);
-
     particles.slice(i).forEach(q=>{
-      const dx=p.x-q.x,dy=p.y-q.y;
-      const d=Math.sqrt(dx*dx+dy*dy);
+      const dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);
       if(d<120){
         pCtx.strokeStyle="rgba(0,255,156,.12)";
         pCtx.beginPath();
@@ -287,7 +255,8 @@ drawP();
 // LOAD
 addEventListener('load',()=>{
   document.querySelector('header').classList.add('show');
-  document.querySelectorAll('.hero h2,.hero h3,.hero p,.btns,.profile').forEach(e=>e.classList.add('show'));
+  document.querySelectorAll('.hero h2,.hero h3,.hero p,.btns,.profile')
+    .forEach(e=>e.classList.add('show'));
   document.querySelectorAll('section').forEach(s=>s.classList.add('show'));
 });
 </script>
