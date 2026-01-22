@@ -3,33 +3,25 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- MOBILE -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- TITLE -->
 <title>Shivansh Codex | Student, Developer & Ethical Hacker</title>
 
-<!-- SEO DESCRIPTION -->
 <meta name="description" content="Shivansh Codex – Student, Developer & Ethical Hacker portfolio. Creative cyber UI, web security and ethical hacking projects.">
-
 <meta name="author" content="Shivansh Codex">
 <meta name="robots" content="index, follow">
 
-<!-- CANONICAL -->
 <link rel="canonical" href="https://www.shivanshcodex.online">
 
-<!-- LOGO -->
 <link rel="icon" type="image/png" href="profile.png">
 <link rel="apple-touch-icon" href="profile.png">
 
-<!-- SOCIAL PREVIEW -->
 <meta property="og:title" content="Shivansh Codex">
 <meta property="og:description" content="Student • Developer • Ethical Hacker | Cyber UI & Web Security">
 <meta property="og:image" content="https://www.shivanshcodex.online/profile.png">
 <meta property="og:url" content="https://www.shivanshcodex.online">
 <meta property="og:type" content="website">
 
-<!-- SCHEMA -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -44,12 +36,14 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
   font-family:'Share Tech Mono', monospace;
   background:#000;
   color:#00ff9c;
   overflow-x:hidden;
 }
+
 canvas{
   position:fixed;
   inset:0;
@@ -57,6 +51,7 @@ canvas{
 }
 #matrix{z-index:-2;}
 #particles{z-index:-1;}
+
 .overlay{
   position:fixed;
   inset:0;
@@ -64,6 +59,7 @@ canvas{
   opacity:.9;
   z-index:0;
 }
+
 header{
   display:flex;
   justify-content:center;
@@ -75,6 +71,7 @@ header{
   z-index:10;
 }
 header.show{opacity:1;transform:none;}
+
 section{
   padding:60px 20px;
   opacity:0;
@@ -84,6 +81,7 @@ section{
   z-index:5;
 }
 section.show{opacity:1;transform:none;}
+
 .hero{text-align:center;}
 .hero h2,.hero h3,.hero p,.btns,.profile{
   opacity:0;
@@ -91,21 +89,26 @@ section.show{opacity:1;transform:none;}
   transition:.8s;
 }
 .hero .show{opacity:1;transform:none;}
+
 .hero h2{font-size:36px;color:#eafff6;}
 .hero h2 span{color:#00ff9c;}
 .hero h3{margin:14px 0;color:#00cc88;}
+
 .hero p{
   max-width:620px;
   margin:0 auto 28px;
   font-family:'Poppins',sans-serif;
   color:#c9fff0;
 }
+
+/* 🔥 BUTTON FIX HERE */
 .btns{
   display:flex;
   gap:15px;
   flex-wrap:wrap;
   justify-content:center;
 }
+
 .btn{
   padding:12px 26px;
   border:1px solid #00ff9c;
@@ -114,12 +117,17 @@ section.show{opacity:1;transform:none;}
   text-transform:uppercase;
   font-size:14px;
   transition:.3s;
+
+  min-width:160px;   /* ✅ FIX */
+  text-align:center; /* ✅ FIX */
 }
+
 .btn:hover{
   background:#00ff9c;
   color:#000;
   transform:scale(1.05);
 }
+
 @keyframes float{
   0%{transform:translateY(0)}
   50%{transform:translateY(-18px)}
@@ -130,6 +138,7 @@ section.show{opacity:1;transform:none;}
   50%{box-shadow:0 0 40px rgba(0,255,156,.9)}
   100%{box-shadow:0 0 15px rgba(0,255,156,.4)}
 }
+
 .profile{margin-top:40px;}
 .profile img{
   width:220px;
@@ -139,6 +148,7 @@ section.show{opacity:1;transform:none;}
   object-fit:cover;
   animation:float 4s ease-in-out infinite,glow 3s ease-in-out infinite;
 }
+
 .about-box,.skills-box{
   max-width:800px;
   margin:0 auto 40px;
@@ -148,6 +158,7 @@ section.show{opacity:1;transform:none;}
   border-radius:8px;
   box-shadow:0 0 20px rgba(0,255,156,.3);
 }
+
 footer{
   text-align:center;
   padding:18px;
@@ -172,7 +183,6 @@ footer{
   <h3>Student • Developer • Ethical Hacker</h3>
   <p>Welcome to my cyber space. Tools and creative digital projects with an ethical hacker mindset.</p>
 
-  <!-- 🔥 BUTTONS (UPDATED) -->
   <div class="btns">
     <a href="https://shivanshcodexx.vercel.app" class="btn">Let's Talk</a>
     <a href="https://www.instagram.com/shivansh_up_70" class="btn">Instagram</a>
@@ -207,8 +217,10 @@ footer{
 const mCanvas=document.getElementById('matrix'),mCtx=mCanvas.getContext('2d');
 function resizeM(){mCanvas.width=innerWidth;mCanvas.height=innerHeight;}
 resizeM();addEventListener('resize',resizeM);
+
 const letters="01ABCDEFGHIJKLMNOPQRSTUVWXYZ",fontSize=16;
 let cols=Math.floor(innerWidth/fontSize),drops=Array(cols).fill(1);
+
 setInterval(()=>{
   mCtx.fillStyle="rgba(0,0,0,0.05)";
   mCtx.fillRect(0,0,mCanvas.width,mCanvas.height);
@@ -226,9 +238,11 @@ setInterval(()=>{
 const pCanvas=document.getElementById('particles'),pCtx=pCanvas.getContext('2d');
 function resizeP(){pCanvas.width=innerWidth;pCanvas.height=innerHeight;}
 resizeP();addEventListener('resize',resizeP);
+
 let particles=[];
 for(let i=0;i<80;i++)
 particles.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5});
+
 function drawP(){
   pCtx.clearRect(0,0,pCanvas.width,pCanvas.height);
   particles.forEach((p,i)=>{
