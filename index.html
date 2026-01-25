@@ -90,36 +90,22 @@ a{color:inherit}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
 }
 
-.container{
-  width:min(1100px, 92vw);
-  margin:0 auto;
-}
+.container{width:min(1100px, 92vw);margin:0 auto;}
 
 nav{
-  position:sticky;
-  top:0;
-  z-index:50;
+  position:sticky;top:0;z-index:50;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   background: linear-gradient(to bottom, rgba(5,8,13,.72), rgba(5,8,13,.35));
   border-bottom:1px solid rgba(255,255,255,.06);
 }
-
 .nav-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 0;
-  gap:14px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0;gap:14px;
 }
-
 .brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  text-decoration:none;
-  user-select:none;
-  min-width: 200px;
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;user-select:none;min-width:200px;
 }
 .brand .logo{
   width:34px;height:34px;border-radius:10px;
@@ -128,32 +114,22 @@ nav{
   box-shadow: 0 8px 24px rgba(0,0,0,.35);
   overflow:hidden;
 }
-.brand .logo img{
-  width:100%;height:100%;
-  object-fit:cover;
-  display:block;
-}
+.brand .logo img{width:100%;height:100%;object-fit:cover;display:block;}
 .brand .title{
   font-family:'Share Tech Mono', monospace;
-  letter-spacing:.6px;
-  font-size:18px;
-  color:var(--text);
+  letter-spacing:.6px;font-size:18px;color:var(--text);
 }
 .brand .title span{color:var(--accent)}
 
-/* ===== 3 DOT MENU ===== */
-.menu-wrap{position:relative; display:flex; align-items:center; gap:10px;}
+/* 3-dot menu */
+.menu-wrap{position:relative;display:flex;align-items:center;gap:10px;}
 .kebab{
   border:1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.04);
   color: rgba(234,255,246,.95);
-  width:44px; height:44px;
-  border-radius:14px;
-  display:grid;
-  place-items:center;
-  cursor:pointer;
-  transition:.2s;
-  user-select:none;
+  width:44px;height:44px;border-radius:14px;
+  display:grid;place-items:center;cursor:pointer;
+  transition:.2s;user-select:none;
 }
 .kebab:hover{
   border-color: rgba(0,255,156,.26);
@@ -161,17 +137,11 @@ nav{
   transform: translateY(-1px);
 }
 .kebab span{
-  font-size:20px;
-  line-height:1;
-  letter-spacing:2px;
+  font-size:20px;line-height:1;letter-spacing:2px;
   font-family:'Share Tech Mono', monospace;
 }
-
 .dropdown{
-  position:absolute;
-  right:0;
-  top:54px;
-  width: 220px;
+  position:absolute;right:0;top:54px;width:220px;
   border-radius:18px;
   background: rgba(10,14,22,.72);
   border:1px solid rgba(255,255,255,.10);
@@ -180,15 +150,10 @@ nav{
   box-shadow: 0 20px 70px rgba(0,0,0,.55);
   overflow:hidden;
   transform: translateY(8px);
-  opacity:0;
-  pointer-events:none;
+  opacity:0;pointer-events:none;
   transition: .18s ease;
 }
-.dropdown.open{
-  transform: translateY(0);
-  opacity:1;
-  pointer-events:auto;
-}
+.dropdown.open{transform: translateY(0);opacity:1;pointer-events:auto;}
 .dd-head{
   padding:12px 14px;
   font-family:'Share Tech Mono', monospace;
@@ -196,38 +161,26 @@ nav{
   border-bottom:1px solid rgba(255,255,255,.08);
 }
 .dd a{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  padding:12px 14px;
-  text-decoration:none;
+  display:flex;gap:10px;align-items:center;
+  padding:12px 14px;text-decoration:none;
   font-family:'Share Tech Mono', monospace;
   color: rgba(234,255,246,.92);
   border-bottom:1px solid rgba(255,255,255,.06);
-  background: transparent;
   transition:.18s;
 }
 .dd a:last-child{border-bottom:none}
-.dd a:hover{
-  background: rgba(0,255,156,.10);
-}
-.dd a.active{
-  background: rgba(0,255,156,.14);
-  border-bottom-color: rgba(0,255,156,.12);
-}
+.dd a:hover{background: rgba(0,255,156,.10);}
+.dd a.active{background: rgba(0,255,156,.14);}
 
-/* ===== SECTIONS ===== */
+/* sections */
 section{padding:78px 0;}
 .hero{padding-top:62px;}
-
 .grid-hero{
-  display:grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap:26px;
-  align-items:center;
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:26px;align-items:center;
 }
-@media (max-width: 900px){
-  .grid-hero{grid-template-columns:1fr; text-align:center}
+@media (max-width:900px){
+  .grid-hero{grid-template-columns:1fr;text-align:center}
 }
 
 .glass-card{
@@ -238,37 +191,26 @@ section{padding:78px 0;}
   padding:26px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  position:relative;
-  overflow:hidden;
+  position:relative;overflow:hidden;
 }
 .glass-card:before{
-  content:"";
-  position:absolute; inset:-2px;
+  content:"";position:absolute;inset:-2px;
   background: radial-gradient(500px 250px at 25% 20%, rgba(0,255,156,.16), transparent 60%),
               radial-gradient(420px 220px at 85% 30%, rgba(124,77,255,.16), transparent 60%);
-  opacity:.8;
-  pointer-events:none;
+  opacity:.8;pointer-events:none;
 }
-.glass-card > *{position:relative; z-index:1}
+.glass-card>*{position:relative;z-index:1}
 
 .kicker{
   font-family:'Share Tech Mono', monospace;
   color: rgba(201,255,240,.9);
   letter-spacing: .8px;
 }
-h1{
-  margin-top:10px;
-  font-size:48px;
-  line-height:1.05;
-  letter-spacing:-.5px;
-}
-@media (max-width: 520px){ h1{font-size:38px} }
-
+h1{margin-top:10px;font-size:48px;line-height:1.05;letter-spacing:-.5px;}
+@media (max-width:520px){h1{font-size:38px}}
 h1 span{
   background: linear-gradient(90deg, var(--accent), #7dffcf);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .role{
   margin-top:10px;
@@ -277,143 +219,117 @@ h1 span{
   font-size:16px;
 }
 .desc{
-  margin-top:14px;
-  max-width:64ch;
+  margin-top:14px;max-width:64ch;
   color: rgba(234,255,246,.88);
-  font-size:15px;
-  line-height:1.6;
+  font-size:15px;line-height:1.6;
   margin-inline:auto;
 }
 
-.profile-wrap{display:flex; justify-content:center;}
+.profile-wrap{display:flex;justify-content:center;}
 .pfp{
-  width:260px;height:260px;
-  border-radius:26px;
-  border: 1px solid rgba(0,255,156,.32);
+  width:260px;height:260px;border-radius:26px;
+  border:1px solid rgba(0,255,156,.32);
   background: rgba(255,255,255,.05);
   box-shadow: 0 20px 60px rgba(0,0,0,.45);
-  overflow:hidden;
-  position:relative;
-  transform: translateZ(0);
+  overflow:hidden;position:relative;
   animation: floaty 5s ease-in-out infinite;
 }
 .pfp:after{
-  content:"";
-  position:absolute; inset:-2px;
-  border-radius:26px;
+  content:"";position:absolute;inset:-2px;border-radius:26px;
   background: radial-gradient(250px 140px at 30% 20%, rgba(0,255,156,.22), transparent 60%),
               radial-gradient(240px 140px at 80% 30%, rgba(124,77,255,.20), transparent 60%);
-  pointer-events:none;
-  opacity:.9;
+  pointer-events:none;opacity:.9;
 }
 .pfp img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.05);}
 @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-16px)}100%{transform:translateY(0)}}
 
 .section-title{
   font-family:'Share Tech Mono', monospace;
-  font-size:22px;
-  letter-spacing: .8px;
-  margin-bottom:14px;
-  color: rgba(234,255,246,.95);
+  font-size:22px;letter-spacing:.8px;margin-bottom:14px;
 }
 .section-sub{
   color: rgba(201,255,240,.85);
-  margin-bottom:18px;
-  line-height:1.6;
-  font-size:14px;
+  margin-bottom:18px;line-height:1.6;font-size:14px;
 }
 
+/* clickable project cards */
 .cards{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:14px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
 }
-@media (max-width: 900px){ .cards{grid-template-columns:1fr} }
-
+@media (max-width:900px){.cards{grid-template-columns:1fr}}
 .card{
-  padding:18px;
-  border-radius:18px;
+  padding:18px;border-radius:18px;
   background: rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.08);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 16px 50px rgba(0,0,0,.35);
-  position:relative;
-  overflow:hidden;
+  position:relative;overflow:hidden;
   transition:.25s;
 }
-.card:hover{transform: translateY(-3px);border-color: rgba(0,255,156,.22);background: rgba(0,255,156,.06);}
+.card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(0,255,156,.22);
+  background: rgba(0,255,156,.06);
+}
 .card .tag{
   font-family:'Share Tech Mono', monospace;
   color: rgba(0,255,156,.9);
-  letter-spacing:.6px;
-  font-size:12px;
+  letter-spacing:.6px;font-size:12px;
 }
 .card h3{margin-top:8px;font-size:16px;letter-spacing:.2px;}
 .card p{margin-top:8px;color: rgba(234,255,246,.84);line-height:1.6;font-size:13.5px;}
 
+/* make cards links */
+.card-link{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+  border-radius:18px;
+  outline:none;
+}
+.card-link:focus .card{
+  border-color: rgba(0,255,156,.42);
+  box-shadow: 0 0 0 3px rgba(0,255,156,.12), 0 16px 50px rgba(0,0,0,.35);
+}
+
+/* skills badges */
 .badges{display:flex;flex-wrap:wrap;gap:10px;}
 .badge{
-  padding:10px 12px;
-  border-radius:999px;
+  padding:10px 12px;border-radius:999px;
   border:1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.04);
   color: rgba(234,255,246,.88);
   font-size:13px;
 }
 
-/* ===== BUTTONS (for Projects section now) ===== */
+/* quick links grid */
 .actions-grid{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap:12px;
-  margin-top:16px;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;margin-top:16px;
 }
-@media (max-width: 520px){
-  .actions-grid{grid-template-columns:1fr;}
-}
+@media (max-width:520px){.actions-grid{grid-template-columns:1fr;}}
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:13px 16px;
-  border-radius:14px;
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:13px 16px;border-radius:14px;
   border:1px solid rgba(0,255,156,.35);
   background: rgba(0,255,156,.08);
   text-decoration:none;
   font-family:'Share Tech Mono', monospace;
   text-transform: uppercase;
-  font-size:13px;
-  letter-spacing:.8px;
-  transition:.25s;
-  min-height:48px;
+  font-size:13px;letter-spacing:.8px;
+  transition:.25s;min-height:48px;
 }
-.btn:hover{
-  transform: translateY(-2px);
-  background: rgba(0,255,156,.14);
-  box-shadow: 0 16px 40px rgba(0,255,156,.10);
-}
-.btn.secondary{
-  border-color: rgba(255,255,255,.12);
-  background: rgba(255,255,255,.04);
-}
-.btn.secondary:hover{
-  border-color: rgba(0,255,156,.22);
-  background: rgba(255,255,255,.06);
-}
+.btn:hover{transform: translateY(-2px);background: rgba(0,255,156,.14);box-shadow: 0 16px 40px rgba(0,255,156,.10);}
+.btn.secondary{border-color: rgba(255,255,255,.12);background: rgba(255,255,255,.04);}
+.btn.secondary:hover{border-color: rgba(0,255,156,.22);background: rgba(255,255,255,.06);}
 
-/* ===== Scroll Reveal ===== */
+/* reveal */
 .reveal{
-  opacity:0;
-  transform: translateY(26px);
-  filter: blur(4px);
+  opacity:0;transform: translateY(26px);filter: blur(4px);
   transition: opacity .75s ease, transform .75s ease, filter .75s ease;
 }
-.reveal.show{
-  opacity:1;
-  transform: translateY(0);
-  filter: blur(0);
-}
+.reveal.show{opacity:1;transform: translateY(0);filter: blur(0);}
 .delay-1{transition-delay:.10s}
 .delay-2{transition-delay:.18s}
 .delay-3{transition-delay:.26s}
@@ -422,14 +338,11 @@ h1 span{
 hr.sep{
   border:none;height:1px;
   background: linear-gradient(90deg, transparent, rgba(0,255,156,.35), transparent);
-  opacity:.55;margin: 28px 0;
+  opacity:.55;margin:28px 0;
 }
 .footer{
-  padding:22px 0 30px;
-  border-top:1px solid rgba(255,255,255,.06);
-  color: rgba(234,255,246,.60);
-  font-size:13px;
-  text-align:center;
+  padding:22px 0 30px;border-top:1px solid rgba(255,255,255,.06);
+  color: rgba(234,255,246,.60);font-size:13px;text-align:center;
 }
 </style>
 </head>
@@ -444,11 +357,11 @@ hr.sep{
       <div class="logo">
         <img src="profile.png" alt="Shivansh Codex Logo">
       </div>
-      <!-- "</>" removed -->
-      <div class="title"><span>ShivanshCodex</span></div>
+
+      <!-- Title changed as you asked -->
+      <div class="title"><span>𝐒𝐡𝐢𝐯𝐚𝐧𝐬𝐡𝐜𝐨𝐝𝐞𝐱</span></div>
     </a>
 
-    <!-- 3 DOT MENU -->
     <div class="menu-wrap">
       <button class="kebab" id="kebabBtn" aria-label="Menu" aria-expanded="false">
         <span>⋮</span>
@@ -480,8 +393,6 @@ hr.sep{
           Welcome to my space. I build creative web experiences and explore web security with an ethical mindset.
           Clean UI, strong structure, and performance-focused code.
         </p>
-
-        <!-- Buttons REMOVED from here (as you asked) -->
       </div>
 
       <div class="profile-wrap">
@@ -498,32 +409,40 @@ hr.sep{
       <div class="glass-card reveal">
         <div class="section-title">Projects</div>
         <div class="section-sub">
-          Select a section below to open links or view project cards.
+          Tap a card to open the live project.
         </div>
 
         <div class="cards">
-          <div class="card reveal delay-1">
-            <div class="tag">WEB APP</div>
-            <h3>ShivanshCodex Chat / Group</h3>
-            <p>Realtime chat experience with clean UI + responsive layout. Designed for smooth mobile usage.</p>
-          </div>
+          <!-- WEB APP => opens shivanshcodex.vercel.app -->
+          <a class="card-link reveal delay-1" href="https://shivanshcodex.vercel.app" target="_blank" rel="noopener">
+            <div class="card">
+              <div class="tag">WEB APP</div>
+              <h3>ShivanshCodex Web App</h3>
+              <p>Tap to open the live web app.</p>
+            </div>
+          </a>
 
-          <div class="card reveal delay-2">
-            <div class="tag">SECURITY</div>
-            <h3>Web Security Notes</h3>
-            <p>Basics of web vulnerabilities, safe coding practices, and ethical testing approach.</p>
-          </div>
+          <!-- SECURITY => opens shivanshcodex-tool.vercel.app -->
+          <a class="card-link reveal delay-2" href="https://shivanshcodex-tool.vercel.app" target="_blank" rel="noopener">
+            <div class="card">
+              <div class="tag">SECURITY</div>
+              <h3>ShivanshCodex Security Tools</h3>
+              <p>Tap to open security tools & utilities.</p>
+            </div>
+          </a>
 
-          <div class="card reveal delay-3">
-            <div class="tag">UI/UX</div>
-            <h3>Cyber Glass UI Components</h3>
-            <p>Reusable glassmorphism components: cards, navbar, buttons, section reveal animations.</p>
-          </div>
+          <!-- UI/UX => opens shivanshcodex-app.vercel.app -->
+          <a class="card-link reveal delay-3" href="https://shivanshcodex-app.vercel.app" target="_blank" rel="noopener">
+            <div class="card">
+              <div class="tag">UI/UX</div>
+              <h3>ShivanshCodex App / UI</h3>
+              <p>Tap to open the UI/UX project.</p>
+            </div>
+          </a>
         </div>
 
         <hr class="sep">
 
-        <!-- Your buttons moved here -->
         <div class="section-title" style="margin-bottom:10px;">Quick Links</div>
         <div class="section-sub" style="margin-bottom:14px;">
           Tap to open:
@@ -578,7 +497,6 @@ hr.sep{
           Want to talk or collaborate? Click below:
         </div>
 
-        <!-- Contact remains same as requested -->
         <a class="btn" href="https://shivanshcodexx.vercel.app" target="_blank" rel="noopener">Let's Talk</a>
       </div>
     </div>
@@ -591,7 +509,7 @@ hr.sep{
 </div>
 
 <script>
-/* ===== Scroll Reveal ===== */
+/* reveal */
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
@@ -601,52 +519,37 @@ const io = new IntersectionObserver((entries)=>{
     }
   });
 }, { threshold: 0.12 });
-
 revealEls.forEach(el=>{
   if(!el.classList.contains('show')) io.observe(el);
 });
 
-/* ===== Dropdown Menu ===== */
+/* dropdown */
 const kebabBtn = document.getElementById('kebabBtn');
 const dropdown = document.getElementById('dropdown');
 
-function openMenu(){
-  dropdown.classList.add('open');
-  kebabBtn.setAttribute('aria-expanded', 'true');
-}
-function closeMenu(){
-  dropdown.classList.remove('open');
-  kebabBtn.setAttribute('aria-expanded', 'false');
-}
+function openMenu(){ dropdown.classList.add('open'); kebabBtn.setAttribute('aria-expanded','true'); }
+function closeMenu(){ dropdown.classList.remove('open'); kebabBtn.setAttribute('aria-expanded','false'); }
+
 kebabBtn.addEventListener('click', ()=>{
   dropdown.classList.contains('open') ? closeMenu() : openMenu();
 });
 document.addEventListener('click', (e)=>{
-  if(!dropdown.contains(e.target) && !kebabBtn.contains(e.target)){
-    closeMenu();
-  }
+  if(!dropdown.contains(e.target) && !kebabBtn.contains(e.target)) closeMenu();
 });
 
-/* ===== Active Nav Link + close dropdown on click ===== */
+/* active nav */
 const sections = [...document.querySelectorAll('section[id]')];
 const navLinks = document.querySelectorAll('.navlink');
-
 function setActive(id){
-  navLinks.forEach(a=>{
-    a.classList.toggle('active', a.getAttribute('href') === '#'+id);
-  });
+  navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#'+id));
 }
-
 const ioNav = new IntersectionObserver((entries)=>{
-  const visible = entries
-    .filter(e=>e.isIntersecting)
-    .sort((a,b)=>b.intersectionRatio - a.intersectionRatio)[0];
+  const visible = entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
   if(visible) setActive(visible.target.id);
 }, { threshold: [0.25, 0.4, 0.6] });
-
 sections.forEach(s=>ioNav.observe(s));
 
-/* ===== Smooth scroll + close menu ===== */
+/* smooth scroll + close menu */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', (e)=>{
     const href = a.getAttribute('href');
@@ -662,11 +565,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-/* ===== Respect reduced motion ===== */
+/* reduced motion */
 if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   document.querySelectorAll('*').forEach(el=>{
-    el.style.animation = 'none';
-    el.style.transition = 'none';
+    el.style.animation='none';
+    el.style.transition='none';
   });
 }
 </script>
