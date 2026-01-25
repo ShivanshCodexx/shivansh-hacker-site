@@ -43,7 +43,6 @@
   --accent:#00ff9c;
   --accent2:#7c4dff;
   --glass: rgba(255,255,255,.07);
-  --glass2: rgba(255,255,255,.10);
   --stroke: rgba(0,255,156,.25);
   --shadow: 0 18px 55px rgba(0,0,0,.45);
 }
@@ -120,6 +119,7 @@ nav{
   gap:10px;
   text-decoration:none;
   user-select:none;
+  min-width: 200px;
 }
 .brand .logo{
   width:34px;height:34px;border-radius:10px;
@@ -141,42 +141,84 @@ nav{
 }
 .brand .title span{color:var(--accent)}
 
-.menu{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  flex-wrap:wrap;
-  justify-content:flex-end;
+/* ===== 3 DOT MENU ===== */
+.menu-wrap{position:relative; display:flex; align-items:center; gap:10px;}
+.kebab{
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  color: rgba(234,255,246,.95);
+  width:44px; height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  transition:.2s;
+  user-select:none;
 }
-.menu a{
-  font-family:'Share Tech Mono', monospace;
-  text-decoration:none;
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.06);
-  background: rgba(255,255,255,.03);
-  transition:.25s;
-  color: rgba(234,255,246,.92);
-}
-.menu a:hover{
-  border-color: rgba(0,255,156,.28);
+.kebab:hover{
+  border-color: rgba(0,255,156,.26);
   background: rgba(0,255,156,.08);
   transform: translateY(-1px);
 }
-.menu a.active{
-  border-color: rgba(0,255,156,.40);
-  background: rgba(0,255,156,.12);
-  color: var(--text);
-  box-shadow: 0 10px 30px rgba(0,255,156,.10);
+.kebab span{
+  font-size:20px;
+  line-height:1;
+  letter-spacing:2px;
+  font-family:'Share Tech Mono', monospace;
 }
 
-section{
-  padding:78px 0;
+.dropdown{
+  position:absolute;
+  right:0;
+  top:54px;
+  width: 220px;
+  border-radius:18px;
+  background: rgba(10,14,22,.72);
+  border:1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 70px rgba(0,0,0,.55);
+  overflow:hidden;
+  transform: translateY(8px);
+  opacity:0;
+  pointer-events:none;
+  transition: .18s ease;
+}
+.dropdown.open{
+  transform: translateY(0);
+  opacity:1;
+  pointer-events:auto;
+}
+.dd-head{
+  padding:12px 14px;
+  font-family:'Share Tech Mono', monospace;
+  color: rgba(201,255,240,.85);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.dd a{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:12px 14px;
+  text-decoration:none;
+  font-family:'Share Tech Mono', monospace;
+  color: rgba(234,255,246,.92);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  background: transparent;
+  transition:.18s;
+}
+.dd a:last-child{border-bottom:none}
+.dd a:hover{
+  background: rgba(0,255,156,.10);
+}
+.dd a.active{
+  background: rgba(0,255,156,.14);
+  border-bottom-color: rgba(0,255,156,.12);
 }
 
-.hero{
-  padding-top:62px;
-}
+/* ===== SECTIONS ===== */
+section{padding:78px 0;}
+.hero{padding-top:62px;}
 
 .grid-hero{
   display:grid;
@@ -186,7 +228,6 @@ section{
 }
 @media (max-width: 900px){
   .grid-hero{grid-template-columns:1fr; text-align:center}
-  .hero-actions{justify-content:center}
 }
 
 .glass-card{
@@ -241,51 +282,10 @@ h1 span{
   color: rgba(234,255,246,.88);
   font-size:15px;
   line-height:1.6;
+  margin-inline:auto;
 }
 
-.hero-actions{
-  margin-top:18px;
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  padding:12px 18px;
-  min-width:160px;
-  text-align:center;
-  border-radius:14px;
-  border:1px solid rgba(0,255,156,.35);
-  background: rgba(0,255,156,.08);
-  text-decoration:none;
-  font-family:'Share Tech Mono', monospace;
-  text-transform: uppercase;
-  font-size:13px;
-  letter-spacing:.8px;
-  transition:.25s;
-}
-.btn:hover{
-  transform: translateY(-2px) scale(1.01);
-  background: rgba(0,255,156,.14);
-  box-shadow: 0 16px 40px rgba(0,255,156,.10);
-}
-.btn.secondary{
-  border-color: rgba(255,255,255,.12);
-  background: rgba(255,255,255,.04);
-}
-.btn.secondary:hover{
-  border-color: rgba(0,255,156,.22);
-  background: rgba(255,255,255,.06);
-}
-
-.profile-wrap{
-  display:flex;
-  justify-content:center;
-}
+.profile-wrap{display:flex; justify-content:center;}
 .pfp{
   width:260px;height:260px;
   border-radius:26px;
@@ -306,17 +306,8 @@ h1 span{
   pointer-events:none;
   opacity:.9;
 }
-.pfp img{
-  width:100%;height:100%;
-  object-fit:cover;
-  display:block;
-  filter: saturate(1.05) contrast(1.05);
-}
-@keyframes floaty{
-  0%{transform: translateY(0)}
-  50%{transform: translateY(-16px)}
-  100%{transform: translateY(0)}
-}
+.pfp img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.05);}
+@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-16px)}100%{transform:translateY(0)}}
 
 .section-title{
   font-family:'Share Tech Mono', monospace;
@@ -351,34 +342,17 @@ h1 span{
   overflow:hidden;
   transition:.25s;
 }
-.card:hover{
-  transform: translateY(-3px);
-  border-color: rgba(0,255,156,.22);
-  background: rgba(0,255,156,.06);
-}
+.card:hover{transform: translateY(-3px);border-color: rgba(0,255,156,.22);background: rgba(0,255,156,.06);}
 .card .tag{
   font-family:'Share Tech Mono', monospace;
   color: rgba(0,255,156,.9);
   letter-spacing:.6px;
   font-size:12px;
 }
-.card h3{
-  margin-top:8px;
-  font-size:16px;
-  letter-spacing:.2px;
-}
-.card p{
-  margin-top:8px;
-  color: rgba(234,255,246,.84);
-  line-height:1.6;
-  font-size:13.5px;
-}
+.card h3{margin-top:8px;font-size:16px;letter-spacing:.2px;}
+.card p{margin-top:8px;color: rgba(234,255,246,.84);line-height:1.6;font-size:13.5px;}
 
-.badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
+.badges{display:flex;flex-wrap:wrap;gap:10px;}
 .badge{
   padding:10px 12px;
   border-radius:999px;
@@ -388,15 +362,47 @@ h1 span{
   font-size:13px;
 }
 
-.footer{
-  padding:22px 0 30px;
-  border-top:1px solid rgba(255,255,255,.06);
-  color: rgba(234,255,246,.60);
+/* ===== BUTTONS (for Projects section now) ===== */
+.actions-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:12px;
+  margin-top:16px;
+}
+@media (max-width: 520px){
+  .actions-grid{grid-template-columns:1fr;}
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:13px 16px;
+  border-radius:14px;
+  border:1px solid rgba(0,255,156,.35);
+  background: rgba(0,255,156,.08);
+  text-decoration:none;
+  font-family:'Share Tech Mono', monospace;
+  text-transform: uppercase;
   font-size:13px;
-  text-align:center;
+  letter-spacing:.8px;
+  transition:.25s;
+  min-height:48px;
+}
+.btn:hover{
+  transform: translateY(-2px);
+  background: rgba(0,255,156,.14);
+  box-shadow: 0 16px 40px rgba(0,255,156,.10);
+}
+.btn.secondary{
+  border-color: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+}
+.btn.secondary:hover{
+  border-color: rgba(0,255,156,.22);
+  background: rgba(255,255,255,.06);
 }
 
-/* ===== Scroll Reveal (niche se upar) ===== */
+/* ===== Scroll Reveal ===== */
 .reveal{
   opacity:0;
   transform: translateY(26px);
@@ -412,14 +418,18 @@ h1 span{
 .delay-2{transition-delay:.18s}
 .delay-3{transition-delay:.26s}
 
-/* ===== small helpers ===== */
 .anchor-space{scroll-margin-top:92px;}
 hr.sep{
-  border:none;
-  height:1px;
+  border:none;height:1px;
   background: linear-gradient(90deg, transparent, rgba(0,255,156,.35), transparent);
-  opacity:.55;
-  margin: 28px 0;
+  opacity:.55;margin: 28px 0;
+}
+.footer{
+  padding:22px 0 30px;
+  border-top:1px solid rgba(255,255,255,.06);
+  color: rgba(234,255,246,.60);
+  font-size:13px;
+  text-align:center;
 }
 </style>
 </head>
@@ -434,14 +444,25 @@ hr.sep{
       <div class="logo">
         <img src="profile.png" alt="Shivansh Codex Logo">
       </div>
-      <div class="title">&lt;/&gt; <span>ShivanshCodex</span></div>
+      <!-- "</>" removed -->
+      <div class="title"><span>ShivanshCodex</span></div>
     </a>
 
-    <div class="menu" id="menu">
-      <a href="#home" class="navlink active">Home</a>
-      <a href="#projects" class="navlink">Projects</a>
-      <a href="#skills" class="navlink">Skills</a>
-      <a href="#about" class="navlink">About</a>
+    <!-- 3 DOT MENU -->
+    <div class="menu-wrap">
+      <button class="kebab" id="kebabBtn" aria-label="Menu" aria-expanded="false">
+        <span>⋮</span>
+      </button>
+
+      <div class="dropdown" id="dropdown" role="menu" aria-label="Site menu">
+        <div class="dd-head">Menu</div>
+        <div class="dd" id="ddLinks">
+          <a href="#home" class="navlink active" role="menuitem">Home</a>
+          <a href="#projects" class="navlink" role="menuitem">Projects</a>
+          <a href="#skills" class="navlink" role="menuitem">Skills</a>
+          <a href="#about" class="navlink" role="menuitem">About</a>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
@@ -460,15 +481,7 @@ hr.sep{
           Clean UI, strong structure, and performance-focused code.
         </p>
 
-        <hr class="sep">
-
-        <!-- Buttons/Links SAME -->
-        <div class="hero-actions">
-          <a class="btn" href="https://shivanshcodexx.vercel.app" target="_blank" rel="noopener">Let's Talk</a>
-          <a class="btn secondary" href="https://www.instagram.com/shivansh_up_70" target="_blank" rel="noopener">Instagram</a>
-          <a class="btn secondary" href="https://t.me/Shivansh_Codex" target="_blank" rel="noopener">Telegram</a>
-          <a class="btn secondary" href="https://shivanshcodex-app.vercel.app" target="_blank" rel="noopener">Group Chat</a>
-        </div>
+        <!-- Buttons REMOVED from here (as you asked) -->
       </div>
 
       <div class="profile-wrap">
@@ -485,7 +498,7 @@ hr.sep{
       <div class="glass-card reveal">
         <div class="section-title">Projects</div>
         <div class="section-sub">
-          Some builds + experiments. (You can rename/edit these cards anytime.)
+          Select a section below to open links or view project cards.
         </div>
 
         <div class="cards">
@@ -506,6 +519,21 @@ hr.sep{
             <h3>Cyber Glass UI Components</h3>
             <p>Reusable glassmorphism components: cards, navbar, buttons, section reveal animations.</p>
           </div>
+        </div>
+
+        <hr class="sep">
+
+        <!-- Your buttons moved here -->
+        <div class="section-title" style="margin-bottom:10px;">Quick Links</div>
+        <div class="section-sub" style="margin-bottom:14px;">
+          Tap to open:
+        </div>
+
+        <div class="actions-grid">
+          <a class="btn" href="https://shivanshcodexx.vercel.app" target="_blank" rel="noopener">Let's Talk</a>
+          <a class="btn secondary" href="https://www.instagram.com/shivansh_up_70" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn secondary" href="https://t.me/Shivansh_Codex" target="_blank" rel="noopener">Telegram</a>
+          <a class="btn secondary" href="https://shivanshcodex-app.vercel.app" target="_blank" rel="noopener">Group Chat</a>
         </div>
       </div>
     </div>
@@ -545,11 +573,12 @@ hr.sep{
 
         <hr class="sep">
 
-        <!-- Contact: Let's Talk link -->
         <div class="section-title" style="margin-bottom:10px;">Contact</div>
         <div class="section-sub" style="margin-bottom:14px;">
           Want to talk or collaborate? Click below:
         </div>
+
+        <!-- Contact remains same as requested -->
         <a class="btn" href="https://shivanshcodexx.vercel.app" target="_blank" rel="noopener">Let's Talk</a>
       </div>
     </div>
@@ -562,7 +591,7 @@ hr.sep{
 </div>
 
 <script>
-/* ===== Scroll Reveal (niche se upar) ===== */
+/* ===== Scroll Reveal ===== */
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
@@ -577,7 +606,28 @@ revealEls.forEach(el=>{
   if(!el.classList.contains('show')) io.observe(el);
 });
 
-/* ===== Active Nav Link on scroll ===== */
+/* ===== Dropdown Menu ===== */
+const kebabBtn = document.getElementById('kebabBtn');
+const dropdown = document.getElementById('dropdown');
+
+function openMenu(){
+  dropdown.classList.add('open');
+  kebabBtn.setAttribute('aria-expanded', 'true');
+}
+function closeMenu(){
+  dropdown.classList.remove('open');
+  kebabBtn.setAttribute('aria-expanded', 'false');
+}
+kebabBtn.addEventListener('click', ()=>{
+  dropdown.classList.contains('open') ? closeMenu() : openMenu();
+});
+document.addEventListener('click', (e)=>{
+  if(!dropdown.contains(e.target) && !kebabBtn.contains(e.target)){
+    closeMenu();
+  }
+});
+
+/* ===== Active Nav Link + close dropdown on click ===== */
 const sections = [...document.querySelectorAll('section[id]')];
 const navLinks = document.querySelectorAll('.navlink');
 
@@ -588,7 +638,6 @@ function setActive(id){
 }
 
 const ioNav = new IntersectionObserver((entries)=>{
-  // pick most visible
   const visible = entries
     .filter(e=>e.isIntersecting)
     .sort((a,b)=>b.intersectionRatio - a.intersectionRatio)[0];
@@ -597,7 +646,7 @@ const ioNav = new IntersectionObserver((entries)=>{
 
 sections.forEach(s=>ioNav.observe(s));
 
-/* ===== Smooth scroll fix for sticky nav ===== */
+/* ===== Smooth scroll + close menu ===== */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', (e)=>{
     const href = a.getAttribute('href');
@@ -605,6 +654,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       const target = document.querySelector(href);
       if(target){
         e.preventDefault();
+        closeMenu();
         target.scrollIntoView({behavior:'smooth', block:'start'});
         history.replaceState(null, "", href);
       }
