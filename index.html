@@ -1,266 +1,210 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Shivansh Sharma - Professional Security Researcher & Developer">
-<meta name="theme-color" content="#0a0a0a">
-
-<title>Shivansh Sharma | Security Researcher</title>
+<title>Shivansh Codex | Elite Developer & Security Researcher</title>
+<meta name="description" content="Shivansh Sharma – Elite Developer, Security Researcher & Ethical Hacker">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 
 <link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
 
-<!-- Spotlight Effect -->
-<div class="spotlight"></div>
+<div class="loader">
+  <div class="loader-content">
+    <div class="loader-text">INITIALIZING</div>
+    <div class="loader-bar"><div class="loader-progress"></div></div>
+  </div>
+</div>
 
-<!-- Navigation -->
 <nav class="nav">
-  <div class="nav-container">
-    <a href="#" class="logo">
-      <span class="logo-icon">◈</span>
-      <span class="logo-text">Shivansh</span>
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <div class="brand-logo"><img src="profile.png" alt="Logo"></div>
+      <div class="brand-text">ShivanshCodex</div>
     </a>
-    
     <div class="nav-links">
-      <a href="#work" class="nav-link">Work</a>
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#skills" class="nav-link">Skills</a>
       <a href="#about" class="nav-link">About</a>
-      <a href="#contact" class="nav-link">Contact</a>
-      <button class="theme-toggle" aria-label="Toggle theme">
-        <span class="theme-icon">☀</span>
-      </button>
     </div>
-    
-    <button class="menu-toggle" aria-label="Menu">
-      <span></span>
-      <span></span>
-    </button>
+    <button class="menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu">
-  <a href="#work" class="mobile-link">Work</a>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" class="mobile-link">Home</a>
+  <a href="#projects" class="mobile-link">Projects</a>
+  <a href="#skills" class="mobile-link">Skills</a>
   <a href="#about" class="mobile-link">About</a>
-  <a href="#contact" class="mobile-link">Contact</a>
 </div>
 
-<!-- Hero Section -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
-        Available for projects
-      </div>
-      <h1 class="hero-title">
-        Security Researcher<br>
-        <span class="gradient-text">& Developer</span>
-      </h1>
-      <p class="hero-desc">
-        Building secure digital experiences with modern architecture. 
-        Specialized in web security, ethical hacking, and performance optimization.
-      </p>
-      <div class="hero-actions">
-        <a href="#work" class="btn btn-primary">View Work</a>
-        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+<main>
+  <section id="home" class="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-kicker"><span class="kicker-line"></span><span id="typewriter"></span><span class="cursor-blink">_</span></div>
+          <h1 class="hero-title"><span>Hi, I'm</span><span class="glitch-text" data-text="Shivansh">Shivansh</span></h1>
+          <div class="hero-role">Student • Developer • Ethical Hacker</div>
+          <p class="hero-desc">Welcome to my digital space. I create secure web applications and explore web security with an ethical mindset.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary"><span>Explore Work</span><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+            <a href="https://shivanshcodexx.vercel.app" class="btn btn-secondary" target="_blank"><span>Let's Talk</span></a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="profile-container" id="tiltCard">
+            <div class="profile-ring"></div>
+            <div class="profile-ring ring-2"></div>
+            <div class="profile-img-wrapper">
+              <img src="profile.png" alt="Shivansh" class="profile-img">
+              <div class="scan-line"></div>
+            </div>
+            <div class="profile-data">
+              <div class="data-line">ID: SHIV_001</div>
+              <div class="data-line">STATUS: ACTIVE</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <div class="hero-visual">
-      <div class="profile-card">
-        <img src="profile.png" alt="Shivansh Sharma" class="profile-img">
-        <div class="profile-glow"></div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="scroll-indicator">
-    <div class="mouse">
-      <div class="wheel"></div>
-    </div>
-  </div>
-</section>
+    <div class="scroll-indicator"><div class="mouse"><div class="wheel"></div></div><span>SCROLL</span></div>
+  </section>
 
-<!-- Work Section -->
-<section id="work" class="section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Selected Work</span>
-      <h2 class="section-title">Recent Projects</h2>
-    </div>
-    
-    <div class="bento-grid">
-      <!-- Project 1 -->
-      <a href="https://shivanshcodex.vercel.app" class="bento-card bento-large" target="_blank">
-        <div class="card-content">
-          <div class="card-meta">
-            <span class="card-tag">Messaging</span>
-            <span class="card-year">2024</span>
-          </div>
-          <h3 class="card-title">SecureChat Platform</h3>
-          <p class="card-desc">End-to-end encrypted messaging with real-time capabilities</p>
-          <div class="card-arrow">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M17 7H7M17 7V17"/>
-            </svg>
-          </div>
-        </div>
-        <div class="card-visual">
-          <div class="visual-placeholder" style="--hue: 150;">
-            <span>💬</span>
-          </div>
-        </div>
-      </a>
-      
-      <!-- Project 2 -->
-      <a href="https://shivanshcodex-tool.vercel.app" class="bento-card" target="_blank">
-        <div class="card-content">
-          <div class="card-meta">
-            <span class="card-tag">Analytics</span>
-          </div>
-          <h3 class="card-title">Intel System</h3>
-          <p class="card-desc">Visitor intelligence & security analysis</p>
-          <div class="card-arrow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M17 7H7M17 7V17"/>
-            </svg>
-          </div>
-        </div>
-        <div class="card-visual">
-          <div class="visual-placeholder" style="--hue: 250;">
-            <span>📊</span>
-          </div>
-        </div>
-      </a>
-      
-      <!-- Project 3 -->
-      <a href="https://shivanshcodex-app.vercel.app" class="bento-card" target="_blank">
-        <div class="card-content">
-          <div class="card-meta">
-            <span class="card-tag">Social</span>
-          </div>
-          <h3 class="card-title">AnonChat</h3>
-          <p class="card-desc">Anonymous group discussions</p>
-          <div class="card-arrow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M17 7H7M17 7V17"/>
-            </svg>
-          </div>
-        </div>
-        <div class="card-visual">
-          <div class="visual-placeholder" style="--hue: 200;">
-            <span>👥</span>
-          </div>
-        </div>
-      </a>
-      
-      <!-- Stats Card -->
-      <div class="bento-card bento-stats">
-        <div class="stat-item">
-          <span class="stat-num">7+</span>
-          <span class="stat-label">Years Experience</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">50+</span>
-          <span class="stat-label">Projects Done</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">100%</span>
-          <span class="stat-label">Security Focus</span>
-        </div>
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow"><span class="eyebrow-line"></span><span>Featured Work</span></div>
+        <h2 class="section-title">Projects</h2>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- About Section -->
-<section id="about" class="section section-alt">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-content">
-        <div class="section-header">
-          <span class="section-tag">About</span>
-          <h2 class="section-title">Security First,<br>Always.</h2>
-        </div>
-        <p class="about-text">
-          I'm Shivansh Sharma, a security researcher and developer based in India. 
-          I specialize in identifying vulnerabilities and building systems that withstand modern threats.
-        </p>
-        <p class="about-text">
-          My approach combines <strong>clean architecture</strong> with <strong>military-grade security</strong> practices. 
-          Every project is an opportunity to create something both beautiful and bulletproof.
-        </p>
-        
-        <div class="skills">
-          <span class="skill">Web Security</span>
-          <span class="skill">Penetration Testing</span>
-          <span class="skill">React/Next.js</span>
-          <span class="skill">Node.js</span>
-          <span class="skill">Cryptography</span>
-          <span class="skill">System Design</span>
-        </div>
-      </div>
-      
-      <div class="about-visual">
-        <div class="code-block">
-          <div class="code-header">
-            <div class="code-dot red"></div>
-            <div class="code-dot yellow"></div>
-            <div class="code-dot green"></div>
-            <span class="code-title">identity.js</span>
+      <div class="projects-grid">
+        <a href="https://shivanshcodex.vercel.app" class="project-card" target="_blank">
+          <div class="card-content">
+            <div class="card-meta"><span class="card-tag">Messaging</span><span>2024</span></div>
+            <h3 class="card-title">ShivanshCodex Web</h3>
+            <p class="card-desc">Secure messaging platform</p>
           </div>
-          <pre class="code-content"><code><span class="code-key">const</span> <span class="code-var">shivansh</span> = {
-  <span class="code-key">role</span>: <span class="code-str">"Security Researcher"</span>,
-  <span class="code-key">skills</span>: [<span class="code-str">"Hacking"</span>, <span class="code-str">"Coding"</span>],
-  <span class="code-key">available</span>: <span class="code-bool">true</span>,
-  <span class="code-key">mission</span>: <span class="code-str">"Secure the web"</span>
-};</code></pre>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="section">
-  <div class="container">
-    <div class="contact-box">
-      <span class="section-tag">Contact</span>
-      <h2 class="contact-title">Let's work together</h2>
-      <p class="contact-desc">
-        Have a project in mind? Let's discuss how we can build something secure and scalable.
-      </p>
-      <div class="contact-actions">
-        <a href="https://shivanshcodexx.vercel.app" class="btn btn-primary btn-large" target="_blank">
-          Start a Conversation
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
+          <div class="card-visual"><div class="visual-icon">💬</div></div>
+        </a>
+        <a href="https://shivanshcodex-tool.vercel.app" class="project-card" target="_blank">
+          <div class="card-content">
+            <div class="card-meta"><span class="card-tag">Intelligence</span><span>2024</span></div>
+            <h3 class="card-title">Extreme Visitor Intel</h3>
+            <p class="card-desc">Advanced analytics platform</p>
+          </div>
+          <div class="card-visual"><div class="visual-icon">📊</div></div>
+        </a>
+        <a href="https://shivanshcodex-app.vercel.app" class="project-card" target="_blank">
+          <div class="card-content">
+            <div class="card-meta"><span class="card-tag">Anonymous</span><span>2024</span></div>
+            <h3 class="card-title">Strangers Chat</h3>
+            <p class="card-desc">Anonymous group chat</p>
+          </div>
+          <div class="card-visual"><div class="visual-icon">👥</div></div>
         </a>
       </div>
-      <div class="social-links">
-        <a href="https://www.instagram.com/shivansh_up_70" class="social-link" target="_blank">Instagram</a>
-        <a href="https://t.me/Shivansh_Codex" class="social-link" target="_blank">Telegram</a>
-        <a href="https://shivanshcodex-projects.vercel.app" class="social-link" target="_blank">All Projects</a>
+      
+      <div class="quick-links">
+        <h3>Quick Links</h3>
+        <div class="links-grid">
+          <a href="https://shivanshcodexx.vercel.app" class="link-card" target="_blank"><span>💬</span><span>Let's Talk</span></a>
+          <a href="https://www.instagram.com/shivansh_up_70" class="link-card" target="_blank"><span>📸</span><span>Instagram</span></a>
+          <a href="https://t.me/Shivansh_Codex" class="link-card" target="_blank"><span>✈️</span><span>Telegram</span></a>
+          <a href="https://shivanshcodex-projects.vercel.app" class="link-card" target="_blank"><span>🚀</span><span>All Projects</span></a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Footer -->
+  <section id="skills" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow"><span class="eyebrow-line"></span><span>Capabilities</span></div>
+        <h2 class="section-title">Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-item" data-skill="HTML"><span>HTML</span></div>
+        <div class="skill-item" data-skill="CSS"><span>CSS</span></div>
+        <div class="skill-item" data-skill="JavaScript"><span>JavaScript</span></div>
+        <div class="skill-item" data-skill="Web Security"><span>Web Security</span></div>
+        <div class="skill-item" data-skill="Ethical Hacking"><span>Ethical Hacking</span></div>
+        <div class="skill-item" data-skill="UI Design"><span>UI Design</span></div>
+        <div class="skill-item" data-skill="Responsive"><span>Responsive</span></div>
+        <div class="skill-item" data-skill="Performance"><span>Performance</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <div class="section-header">
+            <div class="section-eyebrow"><span class="eyebrow-line"></span><span>Identity</span></div>
+            <h2 class="section-title">About</h2>
+          </div>
+          <p class="about-text">I'm an <span class="highlight">Ethical Hacker & Web Developer</span> who operates where systems fail and security breaks.</p>
+          <p class="about-text">I enjoy building <span class="highlight">strong UI</span> with a <span class="highlight">security-first mindset</span>.</p>
+          
+          <div class="terminal-block">
+            <div class="terminal-header">
+              <div class="terminal-btn red"></div>
+              <div class="terminal-btn yellow"></div>
+              <div class="terminal-btn green"></div>
+              <span>shivansh@codex:~</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line"><span class="prompt">$</span><span id="terminalText"></span><span class="cursor">_</span></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="about-visual">
+          <div class="code-preview">
+            <div class="code-header">security.config.js</div>
+            <pre><code><span class="code-keyword">const</span> <span class="code-var">config</span> = {
+  <span class="code-key">name</span>: <span class="code-str">'Shivansh'</span>,
+  <span class="code-key">role</span>: <span class="code-str">'Security Researcher'</span>,
+  <span class="code-key">level</span>: <span class="code-num">99</span>,
+  <span class="code-key">status</span>: <span class="code-bool">true</span>
+};</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-cta">
+        <h3>Let's Connect</h3>
+        <p>Want to talk or collaborate?</p>
+        <a href="https://shivanshcodexx.vercel.app" class="btn btn-primary btn-large" target="_blank">
+          <span>Initiate Contact</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
 <footer class="footer">
   <div class="container">
-    <p class="footer-text">© 2024 Shivansh Sharma. All rights reserved.</p>
-    <p class="footer-sub">Built with security in mind.</p>
+    <p>© 2017 Shivansh Codex | Ethical Hacker</p>
+    <p class="footer-status"><span class="status-dot"></span>All Systems Operational</p>
   </div>
 </footer>
 
