@@ -1,252 +1,577 @@
 // ==========================================
-// LOADER
+// SHIVANSH CODEX - EXTREME EDITION
+// WebGL + GLSL + Advanced Animations
 // ==========================================
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    gsap.to('.loader', {
-      opacity: 0,
-      duration: 0.5,
-      onComplete: () => {
-        document.querySelector('.loader').style.display = 'none';
-        initAnimations();
+
+// Global Variables
+let scene, camera, renderer, particles;
+let mouseX = 0, mouseY = 0;
+let targetX = 0, targetY = 0;
+const windowHalfX = window.innerWidth / 2;
+const windowHalfY = window.innerHeight / 2;
+
+// ==========================================
+// INITIALIZATION
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  initLoader();
+  initWebGL();
+  initAnimations();
+  initNavigation();
+  initProjects();
+  initTerminal();
+  initMagneticButtons();
+  initSmoothScroll();
+});
+
+// ==========================================
+// LOADER SYSTEM
+// ==========================================
+function initLoader() {
+  const loader = document.getElementById('loader');
+  const progress = document.getElementById('loaderBar');
+  const text = document.getElementById('loaderText');
+  const codeLines = [
+    document.getElementById('codeLine1'),
+    document.getElementById('codeLine2'),
+    document.getElementById('codeLine3')
+  ];
+  
+  const messages = [
+    'INITIALIZING SECURE CONNECTION',
+    'LOADING SHADER MODULES',
+    'ESTABLISHING ENCRYPTED CHANNEL',
+    'AUTHENTICATING USER',
+    'ACCESS GRANTED'
+  ];
+  
+  const codes = [
+    '> import three from "three"',
+    '> const security = new Encryption()',
+    '> await security.establish()'
+  ];
+  
+  let progressVal = 0;
+  let messageIndex = 0;
+  
+  // Animate progress
+  const interval = setInterval(() => {
+    progressVal += Math.random() * 15;
+    if (progressVal >= 100) {
+      progressVal = 100;
+      clearInterval(interval);
+      
+      // Complete loading
+      setTimeout(() => {
+        gsap.to(loader, {
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            loader.style.display = 'none';
+            startEntranceAnimations();
+          }
+        });
+      }, 500);
+    }
+    
+    progress.style.width = progressVal + '%';
+    
+    // Update message
+    if (progressVal > (messageIndex + 1) * 20 && messageIndex < messages.length) {
+      text.textContent = messages[messageIndex];
+      messageIndex++;
+    }
+    
+    // Update code lines
+    codes.forEach((code, i) => {
+      if (progressVal > (i + 1) * 30) {
+        codeLines[i].textContent = code;
+        codeLines[i].style.opacity = '1';
       }
     });
-  }, 2000);
-});
+    
+  }, 200);
+}
 
 // ==========================================
-// CUSTOM CURSOR
+// WEBGL BACKGROUND
 // ==========================================
-const cursorDot = document.querySelector('.cursor-dot');
-const cursorOutline = document.querySelector('.cursor-outline');
-
-window.addEventListener('mousemove', (e) => {
-  const posX = e.clientX;
-  const posY = e.clientY;
+function initWebGL() {
+  const canvas = document.getElementById('glCanvas');
   
-  cursorDot.style.left = `${posX}px`;
-  cursorDot.style.top = `${posY}px`;
+  // Scene setup
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 50;
   
-  cursorOutline.animate({
-    left: `${posX}px`,
-    top: `${posY}px`
-  }, { duration: 500, fill: "forwards" });
-});
+  renderer = new THREE.WebGLRenderer({ 
+    canvas: canvas, 
+    alpha: true, 
+    antialias: true 
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  
+  // Create particle system
+  createParticles();
+  
+  // Mouse movement
+  document.addEventListener('mousemove', onDocumentMouseMove, false);
+  
+  // Resize handler
+  window.addEventListener('resize', onWindowResize, false);
+  
+  // Start animation loop
+  animate();
+}
 
-// Hover effect on interactive elements
-document.querySelectorAll('a, button, .project-card, .skill-item').forEach(el => {
-  el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
-  el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
-});
+function createParticles() {
+  const particleCount = 2000;
+  const positions = new Float32Array(particleCount * 3);
+  const colors = new Float32Array(particleCount * 3);
+  
+  const color1 = new THREE.Color(0x00ff88);
+  const color2 = new THREE.Color(0x00d4ff);
+  
+  for (let i = 0; i < particleCount; i++) {
+    // Position
+    positions[i * 3] = (Math.random() - 0.5) * 100;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 100;
+    
+    // Color
+    const mixedColor = color1.clone().lerp(color2, Math.random());
+    colors[i * 3] = mixedColor.r;
+    colors[i * 3 + 1] = mixedColor.g;
+    colors[i * 3 + 2] = mixedColor.b;
+  }
+  
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  
+  const material = new THREE.PointsMaterial({
+    size: 0.5,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending
+  });
+  
+  particles = new THREE.Points(geometry, material);
+  scene.add(particles);
+  
+  // Add connecting lines
+  createConnections();
+}
+
+function createConnections() {
+  const lineMaterial = new THREE.LineBasicMaterial({
+    color: 0x00ff88,
+    transparent: true,
+    opacity: 0.05
+  });
+  
+  // Create constellation effect
+  const lineGeometry = new THREE.BufferGeometry();
+  const linePositions = [];
+  
+  const positions = particles.geometry.attributes.position.array;
+  const particleCount = positions.length / 3;
+  
+  for (let i = 0; i < particleCount; i++) {
+    for (let j = i + 1; j < particleCount; j++) {
+      const dx = positions[i * 3] - positions[j * 3];
+      const dy = positions[i * 3 + 1] - positions[j * 3 + 1];
+      const dz = positions[i * 3 + 2] - positions[j * 3 + 2];
+      const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+      
+      if (distance < 10) {
+        linePositions.push(
+          positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2],
+          positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]
+        );
+      }
+    }
+  }
+  
+  lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+  const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+  scene.add(lines);
+}
+
+function onDocumentMouseMove(event) {
+  mouseX = (event.clientX - windowHalfX) * 0.001;
+  mouseY = (event.clientY - windowHalfY) * 0.001;
+}
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  
+  targetX = mouseX * 0.5;
+  targetY = mouseY * 0.5;
+  
+  if (particles) {
+    particles.rotation.y += 0.001;
+    particles.rotation.x += (targetY - particles.rotation.x) * 0.05;
+    particles.rotation.y += (targetX - particles.rotation.y) * 0.05;
+  }
+  
+  renderer.render(scene, camera);
+}
+
+// ==========================================
+// ENTRANCE ANIMATIONS
+// ==========================================
+function startEntranceAnimations() {
+  // Animate hero title characters
+  const chars = document.querySelectorAll('.char');
+  chars.forEach((char, i) => {
+    gsap.to(char, {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      duration: 1,
+      delay: i * 0.05,
+      ease: 'power4.out'
+    });
+  });
+  
+  // Scramble text effect for subtitle
+  scrambleText(document.getElementById('scrambleText'), 'ETHICAL HACKER // FULL STACK DEVELOPER // SYSTEM ARCHITECT');
+  
+  // Animate hologram
+  gsap.from('.hologram-container', {
+    scale: 0.8,
+    opacity: 0,
+    duration: 1.5,
+    delay: 0.5,
+    ease: 'power3.out'
+  });
+  
+  // Animate hologram rings
+  gsap.from('.hologram-ring', {
+    scale: 0,
+    opacity: 0,
+    duration: 1,
+    delay: 0.8,
+    stagger: 0.2,
+    ease: 'back.out(1.7)'
+  });
+  
+  // Typewriter effect for meta text
+  typeWriter('metaText', 'ELITE SECURITY RESEARCHER', 50);
+  
+  // Animate scroll indicator
+  gsap.from('.hero-scroll', {
+    opacity: 0,
+    y: 20,
+    duration: 1,
+    delay: 2,
+    ease: 'power2.out'
+  });
+}
+
+// ==========================================
+// TEXT EFFECTS
+// ==========================================
+function scrambleText(element, finalText) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
+  let iterations = 0;
+  const maxIterations = 20;
+  
+  const interval = setInterval(() => {
+    element.textContent = finalText
+      .split('')
+      .map((char, index) => {
+        if (index < iterations / 2) {
+          return finalText[index];
+        }
+        if (char === ' ') return ' ';
+        return chars[Math.floor(Math.random() * chars.length)];
+      })
+      .join('');
+    
+    iterations++;
+    if (iterations > maxIterations * 2) {
+      clearInterval(interval);
+      element.textContent = finalText;
+    }
+  }, 50);
+}
+
+function typeWriter(elementId, text, speed) {
+  const element = document.getElementById(elementId);
+  let i = 0;
+  
+  function type() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  
+  element.textContent = '';
+  type();
+}
 
 // ==========================================
 // NAVIGATION
 // ==========================================
-const nav = document.querySelector('.nav');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
-  }
-}, { passive: true });
-
-// Mobile menu
-const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-let menuOpen = false;
-
-menuBtn.addEventListener('click', () => {
-  menuOpen = !menuOpen;
-  mobileMenu.classList.toggle('active', menuOpen);
+function initNavigation() {
+  const nav = document.getElementById('nav');
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const navProgress = document.getElementById('navProgress');
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-link');
   
-  const spans = menuBtn.querySelectorAll('span');
-  if (menuOpen) {
-    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-    spans[1].style.opacity = '0';
-    spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-  } else {
-    spans[0].style.transform = '';
-    spans[1].style.opacity = '1';
-    spans[2].style.transform = '';
-  }
-});
-
-document.querySelectorAll('.mobile-link').forEach(link => {
-  link.addEventListener('click', () => {
-    menuOpen = false;
-    mobileMenu.classList.remove('active');
-    const spans = menuBtn.querySelectorAll('span');
-    spans[0].style.transform = '';
-    spans[1].style.opacity = '1';
-    spans[2].style.transform = '';
-  });
-});
-
-// ==========================================
-// TYPEWRITER EFFECT
-// ==========================================
-const typewriter = document.getElementById('typewriter');
-const text = 'ETHICAL_HACKER • DEVELOPER';
-let charIndex = 0;
-
-function type() {
-  if (charIndex < text.length) {
-    typewriter.textContent += text.charAt(charIndex);
-    charIndex++;
-    setTimeout(type, 50 + Math.random() * 50);
-  } else {
-    setTimeout(() => {
-      typewriter.textContent = '';
-      charIndex = 0;
-      type();
-    }, 3000);
-  }
-}
-
-// ==========================================
-// PARTICLE CANVAS
-// ==========================================
-const canvas = document.getElementById('particleCanvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-
-function createParticles() {
-  particles = [];
-  const count = window.innerWidth < 768 ? 25 : 50;
-  
-  for (let i = 0; i < count; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 1,
-      speedX: (Math.random() - 0.5) * 0.5,
-      speedY: (Math.random() - 0.5) * 0.5,
-      opacity: Math.random() * 0.5 + 0.2
-    });
-  }
-}
-
-function animateParticles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  particles.forEach((p, i) => {
-    p.x += p.speedX;
-    p.y += p.speedY;
+  // Scroll progress
+  window.addEventListener('scroll', () => {
+    // Nav background
+    if (window.scrollY > 100) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
     
-    if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+    // Progress bar
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    navProgress.style.width = scrolled + '%';
     
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(0, 255, 156, ${p.opacity})`;
-    ctx.fill();
-    
-    // Connect nearby particles
-    for (let j = i + 1; j < particles.length; j++) {
-      const p2 = particles[j];
-      const dx = p.x - p2.x;
-      const dy = p.y - p2.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      
-      if (distance < 100) {
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(0, 255, 156, ${0.1 * (1 - distance / 100)})`;
-        ctx.lineWidth = 1;
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.stroke();
+    // Active section
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (scrollY >= sectionTop - 200) {
+        current = section.getAttribute('id');
       }
+    });
+    
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }, { passive: true });
+  
+  // Mobile toggle
+  navToggle.addEventListener('click', () => {
+    mobileNav.classList.toggle('active');
+    const lines = navToggle.querySelectorAll('.toggle-line');
+    if (mobileNav.classList.contains('active')) {
+      lines[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+      lines[1].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+    } else {
+      lines[0].style.transform = '';
+      lines[1].style.transform = '';
     }
   });
   
-  requestAnimationFrame(animateParticles);
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        mobileNav.classList.remove('active');
+      }
+    });
+  });
 }
 
 // ==========================================
-// 3D TILT EFFECT
+// PROJECTS SLIDER
 // ==========================================
-const tiltCard = document.getElementById('tiltCard');
-
-if (tiltCard && window.innerWidth > 968) {
-  tiltCard.addEventListener('mousemove', (e) => {
-    const rect = tiltCard.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+function initProjects() {
+  const track = document.getElementById('projectTrack');
+  const cards = document.querySelectorAll('.project-card');
+  const prevBtn = document.getElementById('projPrev');
+  const nextBtn = document.getElementById('projNext');
+  const dots = document.querySelectorAll('.dot');
+  
+  let currentIndex = 0;
+  const totalCards = cards.length;
+  
+  function updateSlider() {
+    const cardWidth = cards[0].offsetWidth + 40;
+    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
     
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    const rotateX = (y - centerY) / 20;
-    const rotateY = (centerX - x) / 20;
-    
-    tiltCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+  }
+  
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+    updateSlider();
   });
   
-  tiltCard.addEventListener('mouseleave', () => {
-    tiltCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalCards;
+    updateSlider();
+  });
+  
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      currentIndex = i;
+      updateSlider();
+    });
+  });
+  
+  // Card hover effect with mouse position
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      card.style.setProperty('--mouse-x', x + '%');
+      card.style.setProperty('--mouse-y', y + '%');
+    });
   });
 }
 
 // ==========================================
-// GSAP ANIMATIONS
+// TERMINAL
+// ==========================================
+function initTerminal() {
+  const commands = [
+    'whoami',
+    'cat skills.txt',
+    'nmap -sV target.com',
+    'python3 exploit.py --ethical',
+    './deploy.sh --secure',
+    'echo "Access Granted"'
+  ];
+  
+  const outputs = [
+    'shivansh: elite security researcher',
+    'Python, JavaScript, WebGL, GLSL, Linux',
+    'Scanning... 3 open ports detected',
+    'Exploit running in safe mode',
+    'Deployment successful',
+    'Welcome to the system'
+  ];
+  
+  let cmdIndex = 0;
+  const cmdElement = document.getElementById('termCmd');
+  const outputElement = document.getElementById('termOutput');
+  
+  function typeCommand() {
+    const cmd = commands[cmdIndex];
+    let charIndex = 0;
+    
+    cmdElement.textContent = '';
+    outputElement.textContent = '';
+    
+    const typeInterval = setInterval(() => {
+      if (charIndex < cmd.length) {
+        cmdElement.textContent += cmd[charIndex];
+        charIndex++;
+      } else {
+        clearInterval(typeInterval);
+        
+        setTimeout(() => {
+          outputElement.textContent = outputs[cmdIndex];
+          cmdIndex = (cmdIndex + 1) % commands.length;
+          
+          setTimeout(typeCommand, 3000);
+        }, 500);
+      }
+    }, 50);
+  }
+  
+  // Start terminal when in view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        typeCommand();
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+  
+  observer.observe(document.getElementById('terminal'));
+}
+
+// ==========================================
+// MAGNETIC BUTTONS
+// ==========================================
+function initMagneticButtons() {
+  const buttons = document.querySelectorAll('.magnetic');
+  
+  buttons.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+}
+
+// ==========================================
+// SMOOTH SCROLL (Lenis)
+// ==========================================
+function initSmoothScroll() {
+  // Check if Lenis is available
+  if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      smoothTouch: false,
+      touchMultiplier: 2
+    });
+    
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    
+    requestAnimationFrame(raf);
+  }
+}
+
+// ==========================================
+// GSAP SCROLL ANIMATIONS
 // ==========================================
 function initAnimations() {
-  // Register ScrollTrigger
   gsap.registerPlugin(ScrollTrigger);
   
-  // Typewriter start
-  type();
-  
-  // Start particles
-  resizeCanvas();
-  createParticles();
-  animateParticles();
-  
-  // Hero animations
-  gsap.from('.hero-title', {
-    y: 100,
-    opacity: 0,
-    duration: 1,
-    ease: 'power4.out',
-    delay: 0.2
-  });
-  
-  gsap.from('.hero-role', {
-    y: 50,
-    opacity: 0,
-    duration: 0.8,
-    ease: 'power3.out',
-    delay: 0.4
-  });
-  
-  gsap.from('.hero-desc', {
-    y: 50,
-    opacity: 0,
-    duration: 0.8,
-    ease: 'power3.out',
-    delay: 0.6
-  });
-  
-  gsap.from('.hero-actions', {
-    y: 30,
-    opacity: 0,
-    duration: 0.8,
-    ease: 'power3.out',
-    delay: 0.8
-  });
-  
-  gsap.from('.profile-container', {
-    scale: 0.8,
-    opacity: 0,
-    duration: 1.2,
-    ease: 'power3.out',
-    delay: 0.4
+  // Section headers
+  gsap.utils.toArray('.section-header').forEach(header => {
+    gsap.from(header, {
+      scrollTrigger: {
+        trigger: header,
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out'
+    });
   });
   
   // Project cards
@@ -257,7 +582,7 @@ function initAnimations() {
         start: 'top 85%',
         toggleActions: 'play none none reverse'
       },
-      y: 60,
+      y: 100,
       opacity: 0,
       duration: 0.8,
       delay: i * 0.1,
@@ -265,14 +590,15 @@ function initAnimations() {
     });
   });
   
-  // Skills
-  gsap.utils.toArray('.skill-item').forEach((item, i) => {
-    gsap.from(item, {
+  // Skill nodes
+  gsap.utils.toArray('.skill-node').forEach((node, i) => {
+    gsap.from(node, {
       scrollTrigger: {
-        trigger: item,
-        start: 'top 85%'
+        trigger: node,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse'
       },
-      scale: 0.8,
+      scale: 0,
       opacity: 0,
       duration: 0.6,
       delay: i * 0.05,
@@ -280,82 +606,69 @@ function initAnimations() {
     });
   });
   
-  // About section
-  gsap.from('.about-content', {
-    scrollTrigger: {
-      trigger: '.about-grid',
-      start: 'top 70%'
-    },
-    x: -50,
-    opacity: 0,
-    duration: 1,
-    ease: 'power3.out'
+  // Stat bars
+  gsap.utils.toArray('.bar-fill').forEach(bar => {
+    const width = bar.getAttribute('data-width');
+    gsap.to(bar, {
+      scrollTrigger: {
+        trigger: bar,
+        start: 'top 90%',
+        toggleActions: 'play none none reverse'
+      },
+      width: width,
+      duration: 1.5,
+      ease: 'power3.out'
+    });
   });
   
-  gsap.from('.code-preview', {
+  // Intel cards
+  gsap.from('.intel-card', {
     scrollTrigger: {
-      trigger: '.about-grid',
-      start: 'top 70%'
+      trigger: '.intel-grid',
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
     },
-    x: 50,
+    y: 60,
     opacity: 0,
-    duration: 1,
+    duration: 0.8,
+    stagger: 0.2,
     ease: 'power3.out'
-  });
-  
-  // Terminal typing effect
-  const terminalText = document.getElementById('terminalText');
-  const commands = [
-    'whoami',
-    'cat skills.txt',
-    'sudo apt-get install security',
-    'nmap -sV target.com',
-    './exploit.sh --ethical'
-  ];
-  let cmdIndex = 0;
-  let charIdx = 0;
-  
-  function typeTerminal() {
-    if (charIdx < commands[cmdIndex].length) {
-      terminalText.textContent += commands[cmdIndex].charAt(charIdx);
-      charIdx++;
-      setTimeout(typeTerminal, 50);
-    } else {
-      setTimeout(() => {
-        terminalText.textContent = '';
-        charIdx = 0;
-        cmdIndex = (cmdIndex + 1) % commands.length;
-        typeTerminal();
-      }, 2000);
-    }
-  }
-  
-  // Start terminal when in view
-  ScrollTrigger.create({
-    trigger: '.terminal-block',
-    start: 'top 80%',
-    onEnter: () => typeTerminal(),
-    once: true
   });
 }
 
 // ==========================================
-// SMOOTH SCROLL
+// HOLOGRAM TILT EFFECT
 // ==========================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+const hologram = document.getElementById('hologram');
+if (hologram && window.innerWidth > 968) {
+  document.addEventListener('mousemove', (e) => {
+    const rect = hologram.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / 20;
+    const y = (e.clientY - rect.top - rect.height / 2) / 20;
+    
+    hologram.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`;
   });
-});
+  
+  document.addEventListener('mouseleave', () => {
+    hologram.style.transform = '';
+  });
+}
 
 // ==========================================
-// RESIZE HANDLER
+// ID SCRAMBLE EFFECT
 // ==========================================
-window.addEventListener('resize', () => {
-  resizeCanvas();
-  createParticles();
-});
+const idElement = document.getElementById('idScramble');
+if (idElement) {
+  setInterval(() => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let scrambled = '';
+    for (let i = 0; i < 7; i++) {
+      scrambled += chars[Math.floor(Math.random() * chars.length)];
+    }
+    idElement.textContent = 'SHIV_' + scrambled;
+    
+    setTimeout(() => {
+      idElement.textContent = 'SHIV_001';
+    }, 100);
+  }, 3000);
+                          }
